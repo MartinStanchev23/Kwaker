@@ -8,9 +8,9 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
-app.get("*",function(req,res){
-  res.sendFile(path.join(__dirname + '/public/kwaker.html'));
-});
+// app.get("*",function(req,res){
+//   res.sendFile(path.join(__dirname + '/public/kwaker.html'));
+// });
 
 
 // view engine setup
@@ -25,7 +25,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// app.use('/', index);
+app.use('/', index);
 app.use('/users', users);
 
 // catch 404 and forward to error handler
