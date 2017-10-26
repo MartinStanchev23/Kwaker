@@ -1,0 +1,90 @@
+body{
+    font-family: 'PT Sans', sans-serif;
+}
+#mainNav{
+    box-sizing: border-box;
+    background-color: #2d2b2d;
+    border-bottom: 4px solid grey;
+    padding: 10px;
+    padding-right: 7%;
+    padding-left: 7%;
+    height: 46px;
+}
+.navDiv{
+    float: left;
+    margin-left: 11px;
+}
+#homeButtons{
+    display: inline-block;
+    height: 100%;
+}
+.navSpan{
+    /* color: #D8BB3D */
+    color: #FAEBD7;
+}
+
+#duckIcon{
+    display: inline-block;
+    position: absolute;
+    left: 49%;
+}
+#navWrapper{
+    box-sizing: border-box;
+}
+#searchBar{
+    float: right;
+    position: relative;
+    left: 15%;
+}
+#searchInput{
+    box-sizing: border-box;
+    border-radius: 20px;
+    height: 26px;
+    width: 221px;
+    padding: 5px;
+    background-color: #FAEBD7;
+}
+#searchIcon{
+    width:18px;
+    height: 18px;
+    position: relative;
+    left: -33px;
+    top: 5px;
+}
+#navProfile{
+    float: right;
+    position: relative;
+    top: 32.5px;
+    left: 3%;
+}
+#profileOptions{
+    box-sizing: border-box;
+    background-color: #797679;
+    padding: 10px;
+    line-height: 2.2em;
+    color: antiquewhite;
+    font-size: 1.1em;
+    border: 1px solid antiquewhite;
+    border-radius: 5px;
+    margin-top: 3px;
+}
+#whiteAvatar, #whiteMenu, #whiteMegaphone, #whiteBar-chart, #whiteFlash, #homeMain, #notificationMain, #messageMain {
+    display: none;
+}
+#kwakContainer{
+    float: right;
+}
+#kwakBut{
+    background-color: #D8BB3D;
+    box-sizing: border-box;
+    padding: 5px;
+    border-radius: 20px;
+    width: 64px;
+    height: 34px;
+}
+#navProfilePicContainer{
+    float: right;
+    position: relative;
+    right: 1%;
+}
+
