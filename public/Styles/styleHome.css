@@ -1,0 +1,53 @@
+#wrapper{
+    width: 80%;
+    margin: auto;
+}
+#profil_pic_and_name img{
+    float: left;
+}
+#infoKwaks{
+    display: inline-block;
+}
+#user_info_left{
+    border: 1px solid black;
+    display: inline-block;
+    max-width: 100%
+}
+#trends{
+    border: 1px solid black;   
+    max-width: 100% 
+}
+#trends p{
+    margin: 2%;
+}
+#home_left{
+    float: left;
+    max-width: 100%
+}
+.row>ul>li{
+    display: inline;
+}
+#home_center{
+    max-width: 100%;
+    height: 30%
+}
+#post_from_home img{
+    float: left;
+}
+#post_from_home input{
+    width: 80%;
+}   
+#mainKwaks{
+    border: 1px solid black;  
+    max-width: 100%      
+} 
+#post_from_home{
+    border: 1px solid black;
+    display: inline-block;
+    max-width: 100%          
+}
+#home_right{
+    border: 1px solid black;
+    display: inline-block;
+    max-width: 100%  
+}

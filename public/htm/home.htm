@@ -1,0 +1,43 @@
+<div ng-controller="home" class='row'>
+        
+                    <div id='home_left' class='col-lg-3'>
+                        <div class='col-lg-3' id='user_info_left'>
+                            <div id='profil_pic_and_name'>
+                                <img width='100px' src="{{profilePicture}}" alt="">
+                                <h3> {{username}} </h3>
+                            </div>
+        
+                            <div id='infoKwaks'>
+                                <p>
+                                    <span>Kwaks {{numberOfKwaks}}</span>
+                                    <span>Following {{numberOfFollowing}}</span>
+                                    <span>Followers {{numberOfFollowers}}</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class='col-lg-3' id='trends'>
+                            <h3>Trends for you</h3>
+                            <p>{{group1}}</p>
+                            <p>{{group2}}</p>
+                            <p>{{group3}}</p>
+                            <p>{{group4}}</p>
+                            <p>{{group5}}</p>
+                        </div>
+                    </div>
+                    <div id='home_center' class='col-lg-6'>
+                        <div id='post_from_home' class='col-lg-6'>
+                            <img width: '100px' src="{{profilePicture}}" alt="">
+                            <input type="text" placeholder="What`s happening?">
+                        </div>
+        
+                        <div id='mainKwaks' class='col-lg-6'>
+                            <h2>Kwaks</h2>
+                        </div>
+                    </div>
+        
+                    <div id='home_right' class='col-lg-3'>
+                        <h3>Who to follow</h3>
+                    </div>
+                </div>
+                <script src="javascript/ngModules.js"></script>
+                <script src="controllers/homeController.js"></script>
