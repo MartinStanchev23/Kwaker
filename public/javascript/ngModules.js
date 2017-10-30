@@ -15,6 +15,9 @@
         .when('/login', {
             templateUrl: 'htm/login.htm'
         })
+        .when('/register', {
+            templateUrl: 'htm/register.htm'
+        })
     })
     appNG.controller('home', function($scope, $http){
         console.log('zaredi homeController')
@@ -43,6 +46,16 @@
      $http({
         method : "GET",
         url : "htm/login.htm"
+    }).then(function mySuccess(response) {
+        console.log(response);
+        // $scope.myusers = response.data;
+    }, function myError(response) {
+        // $scope.myhotel = response.statusText;
+        console.log('mne')
+    });
+    $http({
+        method : "GET",
+        url : "htm/register.htm"
     }).then(function mySuccess(response) {
         console.log(response);
         // $scope.myusers = response.data;
