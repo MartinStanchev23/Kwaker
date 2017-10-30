@@ -8,6 +8,12 @@ var UserSchema = new Schema({
     email: { type: String, required: true, lowercase: true, unique: true },
     username: { type: String, required: true, lowercase: true, unique: true },
     password: { type: String, required: true },
+    followers: { type: Array },
+    following: { type: Array },
+    phone: { type: String, required: true, unique: true },
+    age: { type: String },
+    gender: { type: String },
+    posts: { type: Array }
 });
 
 //encrypting password
