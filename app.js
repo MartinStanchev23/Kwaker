@@ -25,7 +25,7 @@ db.on('open', function (err) {
   console.log('Database up and running');
 })
 db.on('error', function (err) {
-  console.log('Database error: ' + error);
+  console.log('Database error: ' + err);
 });
 
 
@@ -44,6 +44,7 @@ app.post('/users', function (req, res) {
   user.email = req.body.email;
   user.username = req.body.username;
   user.password = req.body.password;
+  user.phone = req.body.phone;
   console.log(user.firstname);
   user.save(function (err) {
     if (err) {
