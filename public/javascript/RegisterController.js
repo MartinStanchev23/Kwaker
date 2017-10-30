@@ -1,6 +1,10 @@
 document.addEventListener('DOMContentLoaded', function(){
-    var but = document.getElementById('signIn');
-    var inputs = document.querySelectorAll(".regInputs")
-    
+    document.getElementById('signIn').addEventListener('click', function(){
+        document.querySelectorAll('.regInputs').forEach(function(element){
+            if(element.length < 1){
+                alert('Fill all fields');
+            }
+        })
+    })
 })
 

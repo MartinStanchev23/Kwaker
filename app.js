@@ -15,7 +15,7 @@ var User = require('./models/user');
 var Post = require('./models/post');
 
 //mongoose set up
-mongoose.connect('mongodb://localhost:27017/kwakerdb');
+mongoose.connect('mongodb://user:pass@host:port/db');
 var db = mongoose.connection;
 db.on('open', function (err) {
   if (err) {
