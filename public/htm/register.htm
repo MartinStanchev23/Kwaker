@@ -1,15 +1,15 @@
 <div ng-controller="register">
 
-    <form id='registrationForm'>
+    <form id='registrationForm' ng-submit="submitReg()">
         <span class='titleText'>Registration</span>
-        <input id='firstName' class='regInputs' type="text" placeholder="First name">
-        <input id='lastName' class='regInputs' type="text" placeholder="Last name">
-        <input id='username' class='regInputs' type="text" placeholder="Username">
-        <input id='email' class='regInputs' type="text" placeholder="Email">
-        <input id='phone' class='regInputs' type="text" placeholder="Phone number">
-        <input id='password' class='regInputs' type="password" placeholder="Password">
-        <input id='confirmPass' class='regInputs' type="password" placeholder="Confirm password">
+        <input id='firstName' ng-model='firstName' class='regInputs' type="text" placeholder="First name">
+        <input id='lastName' ng-model='lastName' class='regInputs' type="text" placeholder="Last name">
+        <input id='username' ng-model='username' class='regInputs' type="text" placeholder="Username">
+        <input id='email' ng-model='email' class='regInputs' type="text" placeholder="Email">
+        <input id='phone' ng-model='phone' class='regInputs' type="text" placeholder="Phone number">
+        <input id='password' ng-model='password' class='regInputs' type="password" placeholder="Password">
+        <input id='confirmPass' ng-model='confirmPass' class='regInputs' type="password" placeholder="Confirm password">
 
-        <button id='signIn'>Sign in</button>
+        <button id='signIn' type='submit'>Sign in</button>
     </form>
 </div>
