@@ -18,4 +18,4 @@ function User(firstname, lastname, username, email, phoneNumber, password) {
 };
 
 
-module.exports = User;
+// module.exports = User;

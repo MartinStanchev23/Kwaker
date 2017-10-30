@@ -57,22 +57,19 @@ appNG.controller('home', function ($scope, $http) {
 })
 
 appNG.controller('register', function ($http, $scope) {
-    $('#firstName').value;
-    $('#lastName').value;
-    $('#username').value;
-    $('#email').value;
-    $('#phone').value;
-    $('#password').value;
+    $scope.firstname = '';
+    $scope.lastname = '';
+    $scope.username = '';
+    $scope.phone = '';
+    $scope.email = '';
+    $scope.pass = '';
 
-    $http({
-        method: "POST",
-        url: "htm/register.htm"
-    }).then(function mySuccess(response) {
-        console.log(response);
-        // $scope.myusers = response.data;
-    }, function myError(response) {
-        // $scope.myhotel = response.statusText;
-        console.log('mne')
-    });
+
+    $scope.submitReg = function () {
+        $http.post('/users', JSON.stringify({ firstname: $scope.firstname, lastname: $scope.lastname,
+             username: $scope.username, phone: $scope.phone, email: $scope.email, password: $scope.pass, })).then(function (response) {
+            console.log(response.data)
+        });
+    }
 })
 
