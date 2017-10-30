@@ -62,12 +62,12 @@ appNG.controller('register', function ($http, $scope) {
     $scope.username = '';
     $scope.phone = '';
     $scope.email = '';
-    $scope.pass = '';
+    $scope.password = '';
 
 
     $scope.submitReg = function () {
         $http.post('/users', JSON.stringify({ firstname: $scope.firstname, lastname: $scope.lastname,
-             username: $scope.username, phone: $scope.phone, email: $scope.email, password: $scope.pass, })).then(function (response) {
+             username: $scope.username, phone: $scope.phone, email: $scope.email, password: $scope.password, })).then(function (response) {
             console.log(response.data)
         });
     }
