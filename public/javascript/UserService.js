@@ -1,10 +1,11 @@
 
-function User(firstname, lastname, username, email, phoneNumber, password) {
+function User(username, firstname, lastname, password, email, phone) {
     this.username = username;
-    this.firstname = "";
-    this.lastname = '';
+    this.firstname = firstname;
+    this.lastname = lastname;
     this.password = password;
     this.email = email;
+    this.phone = phone;
     this.kwaks = [];
     this.likes = [];
     this.comments = [];
@@ -18,4 +19,4 @@ function User(firstname, lastname, username, email, phoneNumber, password) {
 };
 
 
-module.exports = User;
+// module.exports = User;

@@ -1,4 +1,4 @@
-
+// var UserConstructor = require('UserService');
 //module definition
 var appNG = angular.module('mainContent', ['ngRoute']);
 

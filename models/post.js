@@ -7,7 +7,8 @@ var PostSchema = new Schema({
     authorId: {type: String},
     likes: {type: Number},
     date:{type: Date, default: Date.now},
-    username:{type: String}
+    username:{type: String},
+    comments: {type: Array}
 })
 
 module.exports = mongoose.model('Post', PostSchema);
