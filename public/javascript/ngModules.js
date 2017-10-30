@@ -45,16 +45,6 @@ appNG.controller('home', function ($scope, $http) {
     });
     $http({
         method: "GET",
-        url: "htm/login.htm"
-    }).then(function mySuccess(response) {
-        console.log(response);
-        // $scope.myusers = response.data;
-    }, function myError(response) {
-        // $scope.myhotel = response.statusText;
-        console.log('mne')
-    });
-    $http({
-        method: "GET",
         url: "htm/register.htm"
     }).then(function mySuccess(response) {
         console.log(response);
@@ -63,6 +53,26 @@ appNG.controller('home', function ($scope, $http) {
         // $scope.myhotel = response.statusText;
         console.log('mne')
     });
-    
+
+})
+
+appNG.controller('register', function ($http, $scope) {
+    $('#firstName').value;
+    $('#lastName').value;
+    $('#username').value;
+    $('#email').value;
+    $('#phone').value;
+    $('#password').value;
+
+    $http({
+        method: "POST",
+        url: "htm/register.htm"
+    }).then(function mySuccess(response) {
+        console.log(response);
+        // $scope.myusers = response.data;
+    }, function myError(response) {
+        // $scope.myhotel = response.statusText;
+        console.log('mne')
+    });
 })
 

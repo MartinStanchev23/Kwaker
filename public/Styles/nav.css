@@ -92,3 +92,6 @@ body{
 #rightSideNavWrapper{
     float: right;
 }
+body{
+    background-image: url('footer_lodyas.png')
+}
