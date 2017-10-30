@@ -11,9 +11,8 @@ var mongoose = require('mongoose');
 var app = express();
 var mongo = require('mongodb');
 var Promise = require('mpromise');
-
-
 var User = require('./models/user');
+var Post = require('./models/post');
 
 //mongoose set up
 mongoose.connect('mongodb://localhost:27017/kwakerdb');
@@ -55,9 +54,27 @@ app.post('/users', function (req, res) {
   });
 });
 
-//   // res.send('user created');
+//add new post record in database "posts"
+var users = db.collection('users');
+console.log(users);
 
-// })
+app.post('/posts', function (req, res) {
+  var post = new Post();
+  post.text = req.body.text;
+  if (req.body.other) {
+    post.other = req.body.other;
+  }
+  post.authorId = req.body.authorId;
+  post.username = req.body.username;
+  db.collection('users').update({ 'username': post.username }, { $push: { 'posts': post } });
+  post.save(function (err) {
+    if (err) {
+      res.send(err);
+    } else {
+      res.send('post created');
+    }
+  })
+})
 // app.get("*",function(req,res){
 //   res.sendFile(path.join(__dirname + '/public/kwaker.html'));
 // });
