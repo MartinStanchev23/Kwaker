@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="/Styles/nav.css">
     <link rel="stylesheet" href="/Styles/styleHome.css">
     <link rel="stylesheet" href="/Styles/login.css">
-    
+
 
     <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
     <title>Kwaker</title>
@@ -22,10 +22,10 @@
     <script src='javascript/ngModules.js'></script>
     <script src="controllers/homeController.js"></script>
     <script src="javascript/UserService.js"></script>
-    <script src="javascript/RegisterController.js"></script>    
+    <script src="javascript/RegisterController.js"></script>
     <script src="javascript/KwakService.js"></script>
-    
-    
+
+
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>      
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-animate.js"></script> -->
     <!-- <script src='/javascript/demo.js'></script> -->
@@ -55,13 +55,18 @@
                 <div id='duckIcon'>
                     <img width='26px' src="/images/duck.png" alt="">
                 </div>
-                <div id='kwakContainer'>
-                    <button id='kwakBut'>Kwak</button>
+                <div id='rightSideNavWrapper'>
+                    <div id='kwakContainer'>
+                        <button id='kwakBut'>Kwak</button>
+                    </div>
+                    <div id='navProfilePicContainer'>
+                        <img id='navProfilePic' width='32px' src="/images/bell.png" alt="">
+                    </div>
+                    <div id='searchBar'>
+                        <input id='searchInput' type="text" text="" placeholder="Search in Kwaker">
+                        <img id='searchIcon' src="/images/search.png" alt="">
+                    </div>
                 </div>
-                <div id='navProfilePicContainer'>
-                    <img id='navProfilePic' width='32px' src="/images/bell.png" alt="">
-                </div>
-
 
 
                 <div id='navProfile'>
@@ -109,10 +114,7 @@
                         </li>
                     </ul>
                 </div>
-                <div id='searchBar'>
-                    <input id='searchInput' type="text" text="" placeholder="Search in Kwaker">
-                    <img id='searchIcon' src="/images/search.png" alt="">
-                </div>
+
             </div>
         </nav>
     </header>

@@ -27,7 +27,6 @@ document.addEventListener('DOMContentLoaded', function () {
         UsersDB.prototype.addUser = function (firstname, lastname, username, email, phoneNumber, password) {
             this._users.push(new User(firstname, lastname, username, email, phoneNumber, password));
             //post in DB
-
         }
         UsersDB.prototype.login = function (username, password) {
             return this._users.some(user => {
