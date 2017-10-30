@@ -15,7 +15,7 @@ var User = require('./models/user');
 var Post = require('./models/post');
 
 //mongoose set up
-mongoose.connect('mongodb://user:pass@host:port/db');
+mongoose.connect('mongodb://<dbuser>:<dbpassword>@ds241065.mlab.com:41065/heroku_4kpjppmp');
 var db = mongoose.connection;
 db.on('open', function (err) {
   if (err) {
