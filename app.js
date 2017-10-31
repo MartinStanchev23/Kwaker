@@ -105,16 +105,16 @@ app.post('/login', function(req, res, next) {
   // console.log(users);
   var email = req.body.email;
   var password = req.body.password;
-  console.log(password);
+  console.log(db);
   
-  db.getCollection('users').find({ email: email, password: password }, function(e, docs) {
-      if (docs != null && docs.length > 0) {
-          req.session.userId = docs[0]._id;
-          res.redirect("/");
-      } else {
-          res.redirect("htm/login.htm");
-      }
-  });
+  // db.getCollection('users').find({ email: email, password: password }, function(e, docs) {
+  //     if (docs != null && docs.length > 0) {
+  //         req.session.userId = docs[0]._id;
+  //         res.redirect("/");
+  //     } else {
+  //         res.redirect("htm/login.htm");
+  //     }
+  // });
 });
 // app.get("*",function(req,res){
 //   res.sendFile(path.join(__dirname + '/public/kwaker.html'));
