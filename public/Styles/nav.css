@@ -4,11 +4,11 @@ body{
 #mainNav{
     box-sizing: border-box;
     background-color: #2d2b2d;
-    border-bottom: 4px solid grey;
-    padding: 10px;
+    border-bottom: 4px solid #FFCE54;
+    padding: 14px;
     padding-right: 7%;
     padding-left: 7%;
-    height: 46px;
+    height: 56px;
 }
 .navDiv{
     float: left;
@@ -43,6 +43,7 @@ body{
     width: 221px;
     padding: 5px;
     background-color: #FAEBD7;
+    color: black;
 }
 #searchIcon{
     width:18px;
@@ -75,12 +76,12 @@ body{
     float: right;
 }
 #kwakBut{
-    background-color: #D8BB3D;
     box-sizing: border-box;
     padding: 5px;
     border-radius: 20px;
-    width: 64px;
-    height: 34px;
+    width: 72px;
+    height: 32px;
+    margin-bottom: 4px;
 }
 #navProfilePicContainer{
     float: right;
@@ -93,5 +94,24 @@ body{
     float: right;
 }
 body{
-    background-image: url('footer_lodyas.png')
+    background-image: url('footer_lodyas.png');
+    color: antiquewhite;
+}
+input{
+    outline: none;
+    color: black;
+}
+button{
+    outline: 0;
+    color: black;
+    border-radius: 20px;
+    padding-left: 15px;
+    padding-right: 15px;
+    text-align: center;
+    border-style: none;
+    background-color: #FFCE54
+}
+a, a:hover{
+    text-decoration: none;
+    color: antiquewhite;
 }

@@ -12,17 +12,18 @@
     padding-bottom: 10px;
 }
 .titleText{
-    font-size: 24px;
+    font-size: 36px;
+    margin-bottom: 16px;
     /* margin: auto; */
     display: block;
-    margin: auto;
+    /* margin: auto; */
     text-align: center;
 }
 #registrationForm{
     line-height: 2em;
     position: absolute;
     top: 25%;
-    left: 42%;
+    left: 40%;
     text-align: center;
 }
 .regInputs{
@@ -30,5 +31,7 @@
     display: block;
     border-radius: 20px;
     padding: 5px;
+    border: 2px solid #FFCE54;
+    width: 244px;
 
 }
