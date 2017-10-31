@@ -66,10 +66,25 @@ appNG.controller('register', function ($http, $scope) {
 
 
     $scope.submitReg = function () {
-        $http.post('/users', JSON.stringify({ firstname: $scope.firstname, lastname: $scope.lastname,
-             username: $scope.username, phone: $scope.phone, email: $scope.email, password: $scope.password, })).then(function (response) {
+        $http.post('/users', JSON.stringify({
+            firstname: $scope.firstname, lastname: $scope.lastname,
+            username: $scope.username, phone: $scope.phone, email: $scope.email, password: $scope.password,
+        })).then(function (response) {
             console.log(response.data)
         });
     }
+});
+
+appNG.controller('login', function ($http, $scope) {
+    $scope.email = '';
+    $scope.password = '';
+
+    $scope.submitLogin = function () {
+        $http.post('/login', JSON.stringify({ 
+            email: $scope.email, password: $scope.password })).then(function (response) {
+            console.log(response.data);
+        });
+    }
+
 })
 
