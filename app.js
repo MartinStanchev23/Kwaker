@@ -6,13 +6,22 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var users = require('./routes/users');
+var home = require('./routes/homeJS');
 var router = express.Router();
 var mongoose = require('mongoose');
 var app = express();
+var login = require('./routes/login');
 var mongo = require('mongodb');
 var Promise = require('mpromise');
 var User = require('./models/user');
 var Post = require('./models/post');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+var passportConfig = require('./routes/passport');
+var session = require('express-session');
+
+
+
 
 //mongoose set up
 mongoose.connect('mongodb://localhost:27017/kwakerdb');
@@ -27,11 +36,20 @@ db.on('error', function (err) {
   console.log('Database error: ' + err);
 });
 
-
+app.use(session({ secret: "quacker" }));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
+
+function checkLogin(req, res, next) {
+  if (req.session.userId) {
+      next();
+  } else {
+      res.redirect('./login');
+  }
+}
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 //add new user record in database "users"
@@ -56,7 +74,7 @@ app.post('/users', function (req, res) {
 
 //add new post record in database "posts"
 var users = db.collection('users');
-console.log(users);
+
 
 app.post('/posts', function (req, res) {
   var post = new Post();
@@ -75,12 +93,33 @@ app.post('/posts', function (req, res) {
     }
   })
 })
+
+// Passport setup
+// console.log(passportConfig());
+// app.post('/login', function (req, res) {
+//   var email = req.body.email;
+//   var password = req.body.password;
+// });
+app.post('/login', function(req, res, next) {
+  // var users = db.getCollection('users');
+  // console.log(users);
+  var email = req.body.email;
+  var password = req.body.password;
+  console.log(password);
+  
+  db.getCollection('users').find({ email: email, password: password }, function(e, docs) {
+      if (docs != null && docs.length > 0) {
+          req.session.userId = docs[0]._id;
+          res.redirect("/");
+      } else {
+          res.redirect("htm/login.htm");
+      }
+  });
+});
 // app.get("*",function(req,res){
 //   res.sendFile(path.join(__dirname + '/public/kwaker.html'));
 // });
 
-//pages
-var home = require('./routes/homeJS');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -93,7 +132,8 @@ app.set('view engine', 'hbs');
 
 app.use('/', index);
 // app.use('/users', users);
-app.use('/home', home);
+app.use('/home', checkLogin, home);
+app.use('/login', login);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
