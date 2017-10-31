@@ -44,9 +44,9 @@ app.use(cookieParser());
 
 function checkLogin(req, res, next) {
   if (req.session.userId) {
-      next();
+    next();
   } else {
-      res.redirect('./login');
+    res.redirect('./#!/login');
   }
 }
 
@@ -100,22 +100,35 @@ app.post('/posts', function (req, res) {
 //   var email = req.body.email;
 //   var password = req.body.password;
 // });
-app.post('/login', function(req, res, next) {
+app.post('/login', function (req, res, next) {
   // var users = db.getCollection('users');
   // console.log(users);
   var email = req.body.email;
   var password = req.body.password;
-  console.log(db);
-  
-  // db.getCollection('users').find({ email: email, password: password }, function(e, docs) {
+  var activeUser;
+
+  //   db.collection('users').find({ 'email': email, 'password': password }, function (e, docs) {
+  //     console.log(e);
+  //     console.log(docs);
+  //     docs = JSON.parse(docs);
   //     if (docs != null && docs.length > 0) {
-  //         req.session.userId = docs[0]._id;
-  //         res.redirect("/");
+  //       req.session.userId = docs[0]._id;
+  //       res.redirect("/");
   //     } else {
-  //         res.redirect("htm/login.htm");
+  //       res.redirect('/login');
   //     }
+  //   });
   // });
+  db.collection('users').findOne({ email: req.body.email }, function (err, user) {
+    if (err) {
+      console.log(err);
+    }
+    console.log(user);
+    activeUser = user;
+  });
+  res.render('/home');
 });
+
 // app.get("*",function(req,res){
 //   res.sendFile(path.join(__dirname + '/public/kwaker.html'));
 // });

@@ -82,7 +82,7 @@ appNG.controller('login', function ($http, $scope) {
     $scope.submitLogin = function () {
         $http.post('/login', JSON.stringify({ 
             email: $scope.email, password: $scope.password })).then(function (response) {
-            console.log(response.data);
+            console.log(response);
         });
     }
 
