@@ -2,10 +2,10 @@
     <form ng-submit="submitLogin()" method='POST'>
         <span class='titleText'>Login</span>
         <div id='username'>
-            <input id='email' ng-model='email' type="text" placeholder="Email" >
+            <input id='email' class='regInputs' ng-model='email' type="text" placeholder="Email" >
         </div>
         <div id='pass'>
-            <input id='password' ng-model='password' type="password" placeholder="Password" >
+            <input id='password' class='regInputs' ng-model='password' type="password" placeholder="Password" >
         </div>
         <input name='remember' type="checkbox">
         <label for="remember">Remember me.</label>
@@ -14,20 +14,7 @@
         </span>
         <div>
             <button type='submit'>Login</button>
-            <!-- <button>Registration</button> -->
+            <button>Registration</button>
         </div>
     </form>
-    <span class='titleText'>Login</span>
-    <div id='username'>
-        <input class='regInputs'type="text" placeholder="Email or phone number">
-    </div>
-    <div id='pass'>
-        <input class='regInputs' type="password" placeholder="Password">
-    </div>
-    <input name='remember'type="checkbox"> <label for="remember">Remember me.</label>
-    <span><a href="">Forgot password?</a></span>
-    <div>
-        <button>Login</button>
-        <button>Registration</button>
-    </div>
 </div>
