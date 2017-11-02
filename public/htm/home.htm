@@ -1,44 +1,86 @@
 <div ng-controller="home" class='row'>
-        
-                    <div id='home_left' class='col-lg-3'>
-                        <div class='col-lg-3' id='user_info_left'>
-                            <div id='profil_pic_and_name'>
-                                <img width='100px' src="{{profilePicture}}" alt="">
-                                <h3> {{username}} </h3>
-                            </div>
-        
-                            <div id='infoKwaks'>
-                                <p>
-                                    <span>Kwaks {{numberOfKwaks}}</span>
-                                    <span>Following {{numberOfFollowing}}</span>
-                                    <span>Followers {{numberOfFollowers}}</span>
-                                </p>
-                            </div>
-                        </div>
-                        <div class='col-lg-3' id='trends'>
-                            <h3>Trends for you</h3>
-                            <p>{{group1}}</p>
-                            <p>{{group2}}</p>
-                            <p>{{group3}}</p>
-                            <p>{{group4}}</p>
-                            <p>{{group5}}</p>
-                        </div>
-                    </div>
-                    <div id='home_center' class='col-lg-6'>
-                        <div id='post_from_home' class='col-lg-6'>
-                            <span><img width='26px' src="{{profilePicture}}" alt=""></span> 
-                            <input id='postInput' accept="image/gif,image/jpeg,image/jpg,image/png,video/mp4,video/x-m4v"  type="text" placeholder="What`s happening?">
 
-                        </div>
-        
-                        <div id='mainKwaks' class='col-lg-6'>
-                            <!-- Template for kwaks -->
-                        </div>
-                    </div>
-        
-                    <div id='home_right' class='col-lg-3'>
-                        <h3>Who to follow</h3>
+    <div id='home_left' class='col-lg-3'>
+        <div class='col-lg-3' id='user_info_left'>
+            <div id='profil_pic_and_name'>
+                <img width='100px' src="{{profilePicture}}" alt="">
+                <h3> {{username}} </h3>
+            </div>
+
+            <div id='infoKwaks'>
+                <p>
+                    <span>Kwaks {{numberOfKwaks}}</span>
+                    <span>Following {{numberOfFollowing}}</span>
+                    <span>Followers {{numberOfFollowers}}</span>
+                </p>
+            </div>
+        </div>
+        <div class='col-lg-3' id='trends'>
+            <h3>Trends for you</h3>
+            <p>{{group1}}</p>
+            <p>{{group2}}</p>
+            <p>{{group3}}</p>
+            <p>{{group4}}</p>
+            <p>{{group5}}</p>
+        </div>
+    </div>
+    <div id='home_center' class='col-lg-6'>
+        <div id='post_from_home' class='col-lg-6'>
+            <span>
+                <img width='26px' src="{{profilePicture}}" alt="">
+            </span>
+            <input id='postInput' accept="image/gif,image/jpeg,image/jpg,image/png,video/mp4,video/x-m4v" type="text" placeholder="What`s happening?">
+
+        </div>
+
+        <div id='mainKwaks' class='col-lg-6'>
+            <article >
+                <div>
+                    <img src="" alt="Profile img">
+                    <div>{{user.username}} {{post.date}}</div>
+                </div>
+                <!-- dropping menu -->
+                <div>
+                    <ul>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                </div>
+                <div class='textHolder'>
+                    <!-- text -->{{post.text}}
+                </div>
+                <!-- IMG -->
+                <div class='imageHolder'>
+                    <div class='img'>
+                        {{post.img}}
                     </div>
                 </div>
-                <script src="javascript/ngModules.js"></script>
-                <script src="controllers/homeController.js"></script>
+                <!-- Video -->
+                <div class='videoHolder'>
+                    {{post.video}}
+                </div>
+                <!--  -->
+                <footer>
+                    <div class='buttonWrapper'>
+                        <img src="" alt="Comment">
+                        <span>{{count: Comments}}</span>
+                        <img src="" alt="Rekwak">
+                        <span>{{count: Rekwak}}</span>
+                        <img src="" alt="Like">
+                        <span>{{count: Likes}}</span>
+                        <img src="" alt="Direct Messege">
+                    </div>
+                </footer>
+            </article>
+        </div>
+    </div>
+
+    <div id='home_right' class='col-lg-3'>
+        <h3>Who to follow</h3>
+    </div>
+</div>
+<script src="javascript/ngModules.js"></script>
+<script src="controllers/homeController.js"></script>

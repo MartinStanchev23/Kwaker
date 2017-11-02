@@ -24,7 +24,7 @@ var session = require('express-session');
 
 
 //mongoose set up
-mongoose.connect('mongodb://zarina:123456789@ds145275.mlab.com:45275/kwakerdb');
+mongoose.connect('mongodb://Martin:1234@ds145275.mlab.com:45275/kwakerdb');
 var db = mongoose.connection;
 db.on('open', function (err) {
   if (err) {
@@ -37,7 +37,7 @@ db.on('error', function (err) {
 });
 
 app.use(session({ secret: "quacker" }));
-app.use(logger('dev'));
+app.use(logger('dev')); 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());

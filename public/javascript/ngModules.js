@@ -2,7 +2,6 @@
 //module definition
 var appNG = angular.module('mainContent', ['ngRoute']);
 
-
 appNG.config(function ($routeProvider) {
     $routeProvider
         // .when('/', {
@@ -76,20 +75,17 @@ appNG.controller('register', function ($http, $scope) {
 });
 
 appNG.controller('login', function ($http, $scope, $location) {
-
     $scope.email = '';
     $scope.password = '';
-
 
     $scope.submitLogin = function () {
 
         // validation email and passs
-        
+
         $http.post('/login', JSON.stringify({
             email: $scope.email, password: $scope.password
         })).then(function (response) {
-            console.log(response);
-            if(response) {
+            if (response) {
                 $location.path('/');
             }
         });

@@ -4,7 +4,10 @@ var User = require('../models/user');
 var mongoose = require('mongoose');
 
 
+<<<<<<< HEAD
 mongoose.connect('mongodb://<dbuser>:<dbpassword>@ds137435.mlab.com:37435/movieworld');
+=======
+>>>>>>> e4f7314c6cf759fbaa09f6c7a1718a0ab73b9b78
 var db = mongoose.connection;
 // module.exports = function (router) {
     // console.log(router);
