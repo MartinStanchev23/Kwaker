@@ -1,16 +1,32 @@
 <article ng-controller="kwaks">
-
+    <div>
+        <img src="" alt="Profile img">
+        <div>{{user.username}} {{post.date}}</div>
+    </div>
+    <!-- dropping menu -->
+    <div>
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
     <div class='textHolder'>
-
+        <!-- text -->{{post.text}}
     </div>
+    <!-- IMG -->
     <div class='imageHolder'>
-        <div class='doubleImg'></div>
-        <div class='tripleImg'></div>
-        <div class='img'></div>
+        <div class='img'>
+            {{post.img}}
+        </div>
     </div>
+    <!-- Video -->
     <div class='videoHolder'>
-
+        {{post.video}}
     </div>
+    <!--  -->
     <footer>
         <div class='buttonWrapper'>
             <img src="" alt="Comment">
