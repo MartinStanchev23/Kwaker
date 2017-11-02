@@ -33,7 +33,7 @@
     <!-- <script src='/javascript/demo.js'></script> -->
 </head>
 
-<body>
+<body ng-app="mainContent">
     <header>
         <nav id='mainNav'>
             <div id='navWrapper'>
@@ -64,9 +64,20 @@
                     <div id='navProfilePicContainer'>
                         <img ng-click='hoverMenu()' id='navProfilePic' width='32px' src="/images/avatar.png" alt="">
                     </div>
-                    <div id='searchBar'>
+                    <!-- <div id='searchBar'>
                         <input ng-click='searchInput()' id='searchInput' type="text" text="" placeholder="Search in Kwaker">
                         <img id='searchIcon' src="/images/search.png" alt="">
+                    </div> -->
+                    <div ng-controller="instantSearchCtrl">
+                        <h3 class="headName">Ajax Live search using AngularJs</h3>
+                        <div class="bar">
+                            <input type="text" class="search" ng-model="searchString" placeholder="Enter your search terms" />
+                        </div>
+                        <ul class="data-ctrl">
+                            <li ng-repeat="i in items | searchFor:searchString">
+                                <p>{{i.title}}
+                            </li>
+                        </ul>
                     </div>
                 </div>
 
@@ -120,7 +131,7 @@
             </div>
         </nav>
     </header>
-    <div ng-app="mainContent" id='wrapper'>
+    <div  id='wrapper'>
 
         <div ng-view></div>
     </div>
