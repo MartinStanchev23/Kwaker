@@ -24,7 +24,7 @@ var session = require('express-session');
 
 
 //mongoose set up
-mongoose.connect('mongodb://localhost:27017/kwakerdb');
+mongoose.connect('mongodb://zarina:123456789@ds145275.mlab.com:45275/kwakerdb');
 var db = mongoose.connection;
 db.on('open', function (err) {
   if (err) {
@@ -111,10 +111,10 @@ app.post('/login', function (req, res, next) {
   db.collection('users').findOne({ email: req.body.email }, function (err, user) {
    
     if (user != null) {
-      res.send({success: true});
+      res.json({success: true});
       // set to true
     } else {
-      res.send({success: false});
+      res.json({success: false});
       // set to false
     }
   });

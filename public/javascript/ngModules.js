@@ -88,11 +88,11 @@ appNG.controller('login', function ($http, $scope, $location) {
         $http.post('/login', JSON.stringify({
             email: $scope.email, password: $scope.password
         })).then(function (response) {
+            console.log(response);
             if(response) {
                 $location.path('/');
             }
         });
     }
-
 })
 

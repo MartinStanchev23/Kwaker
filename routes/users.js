@@ -4,7 +4,7 @@ var User = require('../models/user');
 var mongoose = require('mongoose');
 
 
-mongoose.connect('mongodb://localhost:27017/kwakerdb');
+mongoose.connect('mongodb://<dbuser>:<dbpassword>@ds137435.mlab.com:37435/movieworld');
 var db = mongoose.connection;
 // module.exports = function (router) {
     // console.log(router);
