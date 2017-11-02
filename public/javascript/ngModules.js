@@ -8,7 +8,7 @@ appNG.config(function ($routeProvider) {
         // .when('/', {
         //     templateUrl: 'index.html'
         // })
-        .when('/home', {
+        .when('/', {
             templateUrl: 'htm/home.htm',
             // controller: 'home'
         })
@@ -75,14 +75,22 @@ appNG.controller('register', function ($http, $scope) {
     }
 });
 
-appNG.controller('login', function ($http, $scope) {
+appNG.controller('login', function ($http, $scope, $location) {
+
     $scope.email = '';
     $scope.password = '';
 
+
     $scope.submitLogin = function () {
-        $http.post('/login', JSON.stringify({ 
-            email: $scope.email, password: $scope.password })).then(function (response) {
-            console.log(response);
+
+        // validation email and passs
+        
+        $http.post('/login', JSON.stringify({
+            email: $scope.email, password: $scope.password
+        })).then(function (response) {
+            if(response) {
+                $location.path('/');
+            }
         });
     }
 

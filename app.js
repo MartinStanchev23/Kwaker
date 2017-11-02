@@ -42,13 +42,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-function checkLogin(req, res, next) {
-  if (req.session.userId) {
-    next();
-  } else {
-    res.redirect('./#!/login');
-  }
-}
+// function checkLogin(req, res, next) {
+//   if (req.session.userId) {
+//     next();
+//   } else {
+//     res.redirect('./#!/login');
+//   }
+// }
 
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -101,32 +101,23 @@ app.post('/posts', function (req, res) {
 //   var password = req.body.password;
 // });
 app.post('/login', function (req, res, next) {
+
   // var users = db.getCollection('users');
   // console.log(users);
   var email = req.body.email;
   var password = req.body.password;
   var activeUser;
 
-  //   db.collection('users').find({ 'email': email, 'password': password }, function (e, docs) {
-  //     console.log(e);
-  //     console.log(docs);
-  //     docs = JSON.parse(docs);
-  //     if (docs != null && docs.length > 0) {
-  //       req.session.userId = docs[0]._id;
-  //       res.redirect("/");
-  //     } else {
-  //       res.redirect('/login');
-  //     }
-  //   });
-  // });
   db.collection('users').findOne({ email: req.body.email }, function (err, user) {
-    if (err) {
-      console.log(err);
+   
+    if (user != null) {
+      res.send({success: true});
+      // set to true
+    } else {
+      res.send({success: false});
+      // set to false
     }
-    console.log(user);
-    activeUser = user;
   });
-  res.render('/home');
 });
 
 // app.get("*",function(req,res){
@@ -144,9 +135,10 @@ app.set('view engine', 'hbs');
 
 
 app.use('/', index);
+
 // app.use('/users', users);
-app.use('/home', checkLogin, home);
-app.use('/login', login);
+app.use('/#!/home', home);
+// app.use('/login', login);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
