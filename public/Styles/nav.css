@@ -13,6 +13,17 @@ body{
 .navDiv{
     float: left;
     margin-left: 11px;
+    height: 55px;
+    text-align: center;
+    position: relative;
+    top: -17px;
+    /* padding: 17px; */
+    padding-top: 19px;
+    width: 125px;
+}
+.navDiv:hover{
+    background-color: #FFCE54;
+    cursor: pointer;
 }
 #homeButtons{
     display: inline-block;

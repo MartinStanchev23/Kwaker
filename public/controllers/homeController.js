@@ -6,8 +6,12 @@
 
 //    var post = db.collection('posts');
 //    console.log(post);
-addEventListener('DOMContentLoad', function(){
-    function hoverMenu(){
-        document.getElementById('profileOptions').style.display = 'inline-block';
-    }
+addEventListener('DOMContentLoad', function () {
+
+    var dropMenu = document.getElementById('navProfile');
+    var profilePic = document.getElementById('navProfilePic');
+    
+    profilePic.addEventListener('click', function(){
+        dropMenu.style.display = 'inline-block';
+    })
 })
