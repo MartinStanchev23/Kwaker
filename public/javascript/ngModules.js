@@ -65,7 +65,7 @@ appNG.controller('register', function ($http, $scope) {
 
 
     $scope.submitReg = function () {
-        $http.put('/register', JSON.stringify({
+        $http.post('/users', JSON.stringify({
             firstname: $scope.firstname, lastname: $scope.lastname,
             username: $scope.username, phone: $scope.phone, email: $scope.email, password: $scope.password,
         })).then(function (response) {
@@ -91,4 +91,12 @@ appNG.controller('login', function ($http, $scope, $location) {
         });
     }
 })
+
+// app.controller('instantSearchCtrl',function($scope,$http){
+//     $http.get('data.json').success(function(data, status, headers, config) {
+//         $scope.items = data.data;
+//     }).error(function(data, status, headers, config) {
+//         console.log("No data found..");
+//   });
+// });
 

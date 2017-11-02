@@ -24,7 +24,7 @@ var session = require('express-session');
 
 
 //mongoose set up
-mongoose.connect('mongodb://localhost:27017/kwakerdb');
+mongoose.connect('mongodb://zarina:123456789@ds145275.mlab.com:45275/kwakerdb');
 var db = mongoose.connection;
 db.on('open', function (err) {
   if (err) {
@@ -53,12 +53,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //add new user record in database "users"
-<<<<<<< HEAD
-app.post('/login', function (req, res) {
-=======
-app.put('/register', function (req, res) {
-  debugger;
->>>>>>> cb153708f615e928ec0b0f12790b8e4801442806
+app.post('/users', function (req, res) {
   console.log(req.body);
   var user = new User();
   user.firstname = req.body.firstname;
