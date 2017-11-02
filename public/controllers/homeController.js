@@ -6,3 +6,8 @@
 
 //    var post = db.collection('posts');
 //    console.log(post);
+addEventListener('DOMContentLoad', function(){
+    function hoverMenu(){
+        document.getElementById('profileOptions').style.display = 'inline-block';
+    }
+})

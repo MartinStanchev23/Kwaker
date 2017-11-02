@@ -17,13 +17,15 @@ var UserSchema = new Schema({
 });
 
 //encrypting password
-UserSchema.pre('save', function (next) {
-    var user = this;
-    bcrypt.hash(user.password, null, null, function (err, hash) {
-        if (err) return next();
-        user.password = hash;
-        next();
-    })
-})
+// UserSchema.pre('save', function (next) {
+//     var user = this;
+//     bcrypt.hash(user.password, null, null, function (err, hash) {
+//         if (err) {
+//             return next();
+//         }
+//         user.password = hash;
+//         next();
+//     })
+// })
 
 module.exports = mongoose.model('User', UserSchema);

@@ -23,6 +23,7 @@ var session = require('express-session');
 
 
 
+
 //mongoose set up
 mongoose.connect('mongodb://Martin:1234@ds145275.mlab.com:45275/kwakerdb');
 var db = mongoose.connection;
@@ -37,7 +38,7 @@ db.on('error', function (err) {
 });
 
 app.use(session({ secret: "quacker" }));
-app.use(logger('dev')); 
+app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
@@ -109,13 +110,12 @@ app.post('/login', function (req, res, next) {
   var password = req.body.password;
   var activeUser;
 
-  db.collection('users').findOne({ email: req.body.email }, function (err, user) {
-   
+  db.collection('users').findOne({ email: req.body.email, password: req.body.password }, function (err, user) {
     if (user != null) {
-      res.json({success: true});
+      res.json({ success: true });
       // set to true
     } else {
-      res.json({success: false});
+      res.json({ success: false });
       // set to false
     }
   });
