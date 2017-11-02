@@ -53,7 +53,12 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //add new user record in database "users"
+<<<<<<< HEAD
 app.post('/login', function (req, res) {
+=======
+app.put('/register', function (req, res) {
+  debugger;
+>>>>>>> cb153708f615e928ec0b0f12790b8e4801442806
   console.log(req.body);
   var user = new User();
   user.firstname = req.body.firstname;
