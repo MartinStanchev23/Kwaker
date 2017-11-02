@@ -33,107 +33,108 @@
     <!-- <script src='/javascript/demo.js'></script> -->
 </head>
 
-<body ng-app="mainContent">
-    <header>
-        <nav id='mainNav'>
-            <div id='navWrapper'>
-                <div id='homeButtons'>
-                    <div class='navDiv'>
-                        <img src="/images/house-outline (2).png" id='homeMain' width='23px' height="21px" class='imgNav' alt="">
-                        <img src="/images/house-outline (3).png" id='homeSecondary' width='23px' height="21px" class='imgNav' alt="">
-                        <span class='navSpan'>Home</span>
-                    </div>
-                    <div class='navDiv'>
-                        <img id='notificationMain' width='23px' height="21px" class='imgNav' src="/images/bell.png" alt="">
-                        <img id='notificationSecondary' width='23px' height="21px" class='imgNav' src="/images/bell (1).png" alt="">
-                        <span class='navSpan'>Notifications</span>
-                    </div>
-                    <div class='navDiv'>
-                        <img id='messageMain' width='23px' height="21px" class='imgNav' src="/images/email (3).png" alt="">
-                        <img id='messageSecondary' width='23px' height="21px" class='imgNav' src="/images/email (2).png" alt="">
-                        <span class='navSpan'>Messages</span>
-                    </div>
-                </div>
-                <div id='duckIcon'>
-                    <img width='26px' src="/images/duck.png" alt="">
-                </div>
-                <div id='rightSideNavWrapper'>
-                    <div id='kwakContainer'>
-                        <button id='kwakBut'>Kwak</button>
+<body>
+    <div ng-app="mainContent">
+        <header>
+            <nav id='mainNav'>
+                <div id='navWrapper'>
+                    <div id='homeButtons'>
+                        <div class='navDiv'>
+                            <img src="/images/house-outline (2).png" id='homeMain' width='23px' height="21px" class='imgNav' alt="">
+                            <img src="/images/house-outline (3).png" id='homeSecondary' width='23px' height="21px" class='imgNav' alt="">
+                            <span class='navSpan'>Home</span>
+                        </div>
+                        <div class='navDiv'>
+                            <img id='notificationMain' width='23px' height="21px" class='imgNav' src="/images/bell.png" alt="">
+                            <img id='notificationSecondary' width='23px' height="21px" class='imgNav' src="/images/bell (1).png" alt="">
+                            <span class='navSpan'>Notifications</span>
+                        </div>
+                        <div class='navDiv'>
+                            <img id='messageMain' width='23px' height="21px" class='imgNav' src="/images/email (3).png" alt="">
+                            <img id='messageSecondary' width='23px' height="21px" class='imgNav' src="/images/email (2).png" alt="">
+                            <span class='navSpan'>Messages</span>
+                        </div>
                     </div>
                     <div id='navProfilePicContainer'>
                         <img ng-click='hoverMenu()' id='navProfilePic' width='32px' src="/images/avatar.png" alt="">
+                    <div id='duckIcon'>
+                        <img width='26px' src="/images/duck.png" alt="">
                     </div>
-                    <!-- <div id='searchBar'>
+                    <div id='rightSideNavWrapper'>
+                        <div id='kwakContainer'>
+                            <button id='kwakBut'>Kwak</button>
+                        </div>
+                        <!-- <div id='searchBar'>
                         <input ng-click='searchInput()' id='searchInput' type="text" text="" placeholder="Search in Kwaker">
                         <img id='searchIcon' src="/images/search.png" alt="">
                     </div> -->
-                    <div ng-controller="instantSearchCtrl">
-                        <h3 class="headName">Ajax Live search using AngularJs</h3>
-                        <div class="bar">
-                            <input type="text" class="search" ng-model="searchString" placeholder="Enter your search terms" />
-                        </div>
-                        <ul class="data-ctrl">
-                            <li ng-repeat="i in items | searchFor:searchString">
-                                <p>{{i.title}}
+                    <!-- <div ng-controller="instantSearchCtrl">
+                            <h3 class="headName">Ajax Live search using AngularJs</h3>
+                            <div class="bar">
+                                <input type="text" class="search" ng-model="searchString" placeholder="Enter your search terms" />
+                            </div>
+                            <ul class="data-ctrl">
+                                <li ng-repeat="i in items | searchFor:searchString">
+                                    <p>{{i.title}}
+                                </li>
+                            </ul>
+                        </div> -->
+                    </div>
+
+
+                    <div id='navProfile'>
+                        <ul id='profileOptions'>
+                            <!-- <li>Angular</li> -->
+                            <li>
+                                <img id='yellowAvatar' width='18px' src="images/avatar (1).png" alt="">
+                                <img id='whiteAvatar' width='18px' src="images/avatar.png" alt="">
+                                <span>Profile</span>
+                            </li>
+                            <li>
+                                <img id='yellowMenu' width='18px' src="/images/menu (1).png" alt="">
+                                <img id='whiteMenu' width='18px' src="/images/menu.png" alt="">
+                                <span>Lists</span>
+                            </li>
+                            <li>
+                                <img id='yellowFlash' width='18px' src="/images/flash (1).png" alt="">
+                                <img id='whiteFlash' width='18px' src="/images/flash.png" alt="">
+                                <span>Moments</span>
+                            </li>
+                            <li>
+                                <img id='yellowMegaphone' width='18px' src="/images/megaphone-with-sound-waves (1).png" alt="">
+                                <img id='whiteMegaphone' width='18px' src="/images/megaphone-with-sound-waves.png" alt="">
+                                <span>Advertise in Kwaker</span>
+                            </li>
+                            <li>
+                                <img id='yellowBar-chart' width='18px' src="/images/bar-chart (1).png" alt="">
+                                <img id='whiteBar-chart' width='18px' src="/images/bar-chart.png" alt="">
+                                <span>Analyze</span>
+                            </li>
+                            <li>
+                                <span>Settings</span>
+                            </li>
+                            <li>
+                                <span>Help</span>
+                            </li>
+                            <li>
+                                <span>Quick access</span>
+                            </li>
+                            <li>
+                                <span>Sign out</span>
+                            </li>
+                            <li>
+                                <span>Day mode</span>
                             </li>
                         </ul>
                     </div>
+
                 </div>
+            </nav>
+        </header>
+        <div id='wrapper'>
 
-
-                <div id='navProfile'>
-                    <ul id='profileOptions'>
-                        <!-- <li>Angular</li> -->
-                        <li>
-                            <img id='yellowAvatar' width='18px' src="images/avatar (1).png" alt="">
-                            <img id='whiteAvatar' width='18px' src="images/avatar.png" alt="">
-                            <span>Profile</span>
-                        </li>
-                        <li>
-                            <img id='yellowMenu' width='18px' src="/images/menu (1).png" alt="">
-                            <img id='whiteMenu' width='18px' src="/images/menu.png" alt="">
-                            <span>Lists</span>
-                        </li>
-                        <li>
-                            <img id='yellowFlash' width='18px' src="/images/flash (1).png" alt="">
-                            <img id='whiteFlash' width='18px' src="/images/flash.png" alt="">
-                            <span>Moments</span>
-                        </li>
-                        <li>
-                            <img id='yellowMegaphone' width='18px' src="/images/megaphone-with-sound-waves (1).png" alt="">
-                            <img id='whiteMegaphone' width='18px' src="/images/megaphone-with-sound-waves.png" alt="">
-                            <span>Advertise in Kwaker</span>
-                        </li>
-                        <li>
-                            <img id='yellowBar-chart' width='18px' src="/images/bar-chart (1).png" alt="">
-                            <img id='whiteBar-chart' width='18px' src="/images/bar-chart.png" alt="">
-                            <span>Analyze</span>
-                        </li>
-                        <li>
-                            <span>Settings</span>
-                        </li>
-                        <li>
-                            <span>Help</span>
-                        </li>
-                        <li>
-                            <span>Quick access</span>
-                        </li>
-                        <li>
-                            <span>Sign out</span>
-                        </li>
-                        <li>
-                            <span>Day mode</span>
-                        </li>
-                    </ul>
-                </div>
-
-            </div>
-        </nav>
-    </header>
-    <div  id='wrapper'>
-
-        <div ng-view></div>
+            <div ng-view></div>
+        </div>
     </div>
 </body>
 
