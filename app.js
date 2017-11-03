@@ -6,10 +6,15 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var users = require('./routes/users');
+<<<<<<< HEAD
 var home = require('./routes/home');
 var router = express.Router();
+=======
+var home = require('./routes/homeJS');
+// var router = express.Router();
+>>>>>>> 025ce8cc3c894ffdf0773d2ff0d0aff8d45970a4
 var mongoose = require('mongoose');
-var app = express();
+
 var login = require('./routes/login');
 var mongo = require('mongodb');
 var Promise = require('mpromise');
@@ -19,6 +24,8 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var passportConfig = require('./routes/passport');
 var session = require('express-session');
+var apiUsers = require('./routes/apiUsers');
+var app = express();
 
 
 
@@ -93,6 +100,12 @@ app.post('/posts', function (req, res) {
   })
 })
 
+app.use(function (req, res, next) {
+  req.db = db;
+  next();
+});
+
+// });
 // Passport setup
 // console.log(passportConfig());
 // app.post('/login', function (req, res) {
@@ -102,6 +115,7 @@ app.post('/posts', function (req, res) {
 
 
 
+app.use('/api', apiUsers);
 // app.get("*",function(req,res){
 //   res.sendFile(path.join(__dirname + '/public/kwaker.html'));
 // });
