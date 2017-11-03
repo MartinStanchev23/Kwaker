@@ -64,10 +64,13 @@ body{
     top: 5px;
 }
 #navProfile{
-    float: right;
-    position: relative;
     top: 32.5px;
     left: 3%;
+    position: absolute;
+    z-index: 1;
+    display: inline-block;
+    left: 75%;
+    top: 8.2%;
 }
 #profileOptions{
     box-sizing: border-box;

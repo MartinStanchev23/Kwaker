@@ -6,7 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var users = require('./routes/users');
-var home = require('./routes/homeJS');
+var home = require('./routes/home');
 var router = express.Router();
 var mongoose = require('mongoose');
 var app = express();
@@ -19,8 +19,6 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var passportConfig = require('./routes/passport');
 var session = require('express-session');
-
-
 
 
 
@@ -101,24 +99,8 @@ app.post('/posts', function (req, res) {
 //   var email = req.body.email;
 //   var password = req.body.password;
 // });
-app.post('/login', function (req, res, next) {
 
-  // var users = db.getCollection('users');
-  // console.log(users);
-  var email = req.body.email;
-  var password = req.body.password;
-  var activeUser;
 
-  db.collection('users').findOne({ email: req.body.email, password: req.body.password }, function (err, user) {
-    if (user != null) {
-      res.json({ success: true });
-      // set to true
-    } else {
-      res.json({ success: false });
-      // set to false
-    }
-  });
-});
 
 // app.get("*",function(req,res){
 //   res.sendFile(path.join(__dirname + '/public/kwaker.html'));
@@ -137,8 +119,8 @@ app.set('view engine', 'hbs');
 app.use('/', index);
 
 // app.use('/users', users);
-app.use('/#!/home', home);
-// app.use('/login', login);
+app.use('/home', home);
+app.use('/login', login);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

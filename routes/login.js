@@ -2,19 +2,31 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
 var db = mongoose.connection;
+var activeUser = null;
+console.log(activeUser)
+router.get('/', function (req, res, next) {
+    console.log(activeUser)
+    if (activeUser != null) {
+        res.redirect('/')
+    } else {
+        console.log(activeUser)
+    }
+})
 
-router.post('/login', function(req, res, next) {
+router.post('/', function (req, res, next) {
+
+    // var users = db.getCollection('users');
+    // console.log(users);
     var email = req.body.email;
     var password = req.body.password;
-    console.log(email);
-    var users = db.getCollection('users');
-    console.log(users);
-    db.getCollection('users').find({ email: email, password: password }, function(e, docs) {
-        if (docs != null && docs.length > 0) {
-            req.session.userId = docs[0]._id;
-            res.redirect("/");
+    activeUser = { email: email, password: password };
+    db.collection('users').findOne({ email: req.body.email, password: req.body.password }, function (err, user) {
+        if (user != null) {
+            res.json(user);
+            // set to true
         } else {
-            res.redirect("htm/login.htm");
+            res.json({ success: false });
+            // set to false
         }
     });
 });

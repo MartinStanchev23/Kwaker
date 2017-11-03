@@ -1,15 +1,13 @@
 // var UserConstructor = require('UserService');
 //module definition
 var appNG = angular.module('mainContent', ['ngRoute']);
+var user = null;
 
 appNG.config(function ($routeProvider) {
     $routeProvider
-        // .when('/', {
-        //     templateUrl: 'index.html'
-        // })
         .when('/', {
             templateUrl: 'htm/home.htm',
-            // controller: 'home'
+            controller: 'home'
         })
         .when('/login', {
             templateUrl: 'htm/login.htm'
@@ -18,38 +16,30 @@ appNG.config(function ($routeProvider) {
             templateUrl: 'htm/register.htm'
         })
 })
-appNG.controller('home', function ($scope, $http) {
-    console.log('zaredi homeController')
-    $scope.profilePicture = 'https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-camera-128.png'
-    $scope.username = 'Zarina'
-    $scope.numberOfKwaks = 0
-    $scope.numberOfFollowing = 92
-    $scope.numberOfFollowers = 5
+appNG.controller('home', function ($scope, $http, $location) {
+    if(user != null){
+    $scope.profilePicture = user.url;
+    $scope.username = user.name
+    $scope.numberOfKwaks = user.posts.length;
+    $scope.numberOfFollowing = user.following.length
+    $scope.numberOfFollowers = user.followers.length;
 
     $scope.group1 = '#group'
     $scope.group2 = '#group'
     $scope.group3 = '#group'
     $scope.group4 = '#group'
     $scope.group5 = '#group'
+    } else {
+        alert('Log in first')
+        $location.path('/login')
+    }
 
-    $http({
-        method: "GET",
-        url: "htm/home.htm"
-    }).then(function mySuccess(response) {
-        console.log(response);
-        // $scope.myusers = response.data;
-    }, function myError(response) {
-        // $scope.myhotel = response.statusText;
-        console.log('mne')
-    });
     // $http({
     //     method: "GET",
-    //     url: "htm/register.htm"
+    //     url: "htm/home.htm"
     // }).then(function mySuccess(response) {
     //     console.log(response);
-    //     // $scope.myusers = response.data;
     // }, function myError(response) {
-    //     // $scope.myhotel = response.statusText;
     //     console.log('mne')
     // });
 
@@ -81,20 +71,23 @@ appNG.controller('login', function ($http, $scope, $location) {
     $scope.submitLogin = function () {
 
         // validation email and passs
-
         $http.post('/login', JSON.stringify({
             email: $scope.email, password: $scope.password
         })).then(function (response) {
-            
-            if (response.data.success) {
-                $location.path('/');
-            } else {
+
+            if (response.data.success == false) {
                 $location.path('/login');
                 alert('Ivalid name or password')
+            } else {
+                user = response.data;
+                $location.path('/');
+                localStorage.clear();
+                localStorage.setItem('user', JSON.stringify(user));
             }
         });
     }
 })
+
 
 // appNG.controller('instantSearchCtrl',function($scope,$http){
 //     $http.get().success(function(data, status, headers, config) {
