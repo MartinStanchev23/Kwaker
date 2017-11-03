@@ -6,13 +6,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var users = require('./routes/users');
-<<<<<<< HEAD
 var home = require('./routes/home');
 var router = express.Router();
-=======
-var home = require('./routes/homeJS');
-// var router = express.Router();
->>>>>>> 025ce8cc3c894ffdf0773d2ff0d0aff8d45970a4
 var mongoose = require('mongoose');
 
 var login = require('./routes/login');
