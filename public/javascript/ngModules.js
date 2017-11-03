@@ -85,7 +85,7 @@ appNG.controller('login', function ($http, $scope, $location) {
         $http.post('/login', JSON.stringify({
             email: $scope.email, password: $scope.password
         })).then(function (response) {
-            
+
             if (response.data.success) {
                 $location.path('/');
             } else {
@@ -96,17 +96,27 @@ appNG.controller('login', function ($http, $scope, $location) {
     }
 })
 
-// appNG.controller('instantSearchCtrl',function($scope,$http){
-//     $http.get().success(function(data, status, headers, config) {
-//         $scope.items = data.data;
-//     }).error(function(data, status, headers, config) {
-//         console.log("No data found..");
-//   });
-// });
-// appNG.controller("moviesModal", function($scope, $http){
-    
-//     $http.get('/movies').then(function(data){
-//         $scope.movies = data.data;
-//         console.log(data.data)
-//     });
-// });
+appNG.controller('instantSearchCtrl', function ($scope, $http) {
+    $http.get('/api').then(function (data, status, headers, config) {
+        $scope.items = data.data;
+    },(function (data, status, headers, config) {
+        console.log("No data found..");
+    }));
+});
+appNG.filter('searchFor', function () {
+    return function (arr, searchString) {
+        if (!searchString) {
+            return arr;
+        }
+        var result = [];
+        searchString = searchString.toLowerCase();
+        console.log(arr);
+        angular.forEach(arr, function (item) {
+            if (item.username.toLowerCase().indexOf(searchString) !== -1) {
+                result.push(item);
+            }
+        });
+        return result;
+    };
+});
+
