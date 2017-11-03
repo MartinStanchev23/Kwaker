@@ -20,6 +20,8 @@ var LocalStrategy = require('passport-local').Strategy;
 var passportConfig = require('./routes/passport');
 var session = require('express-session');
 var apiUsers = require('./routes/apiUsers');
+var apiPosts = require('./routes/apiPosts');
+
 var app = express();
 
 
@@ -111,6 +113,8 @@ app.use(function (req, res, next) {
 
 
 app.use('/api', apiUsers);
+app.use('/api/posts', apiPosts);
+
 // app.get("*",function(req,res){
 //   res.sendFile(path.join(__dirname + '/public/kwaker.html'));
 // });
