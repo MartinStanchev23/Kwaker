@@ -1,9 +1,9 @@
-<div ng-controller="home" class='row'>
+<div ng-controller="homeController" class='row'>
 
     <div id='home_left' class='col-lg-3'>
         <div class='col-lg-3' id='user_info_left'>
             <div id='profil_pic_and_name'>
-                <img width='100px' src="{{profilePicture}}" alt="">
+                <img style='border-radius: 50%' width='100px' height="100px" src="{{profilePicture}}" alt="">
                 <h3> {{username}} </h3>
             </div>
 
@@ -17,7 +17,7 @@
         </div>
         <div class='col-lg-3' id='trends'>
             <h3>Trends for you</h3>
-            <p>{{group1}}</p>
+            <p>{{username}}</p>
             <p>{{group2}}</p>
             <p>{{group3}}</p>
             <p>{{group4}}</p>
@@ -27,14 +27,14 @@
     <div id='home_center' class='col-lg-6'>
         <div id='post_from_home' class='col-lg-6'>
             <span>
-                <img width='26px' src="{{profilePicture}}" alt="">
+                <img width='26px' height='26px'style='border-radius: 50%' src="{{profilePicture}}" alt="">
             </span>
             <input id='postInput' accept="image/gif,image/jpeg,image/jpg,image/png,video/mp4,video/x-m4v" type="text" placeholder="What`s happening?">
 
         </div>
 
         <div id='mainKwaks' class='col-lg-6'>
-            <article >
+            <article>
                 <div>
                     <img src="" alt="Profile img">
                     <div>{{user.username}} {{post.date}}</div>

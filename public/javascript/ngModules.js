@@ -7,7 +7,7 @@ appNG.config(function ($routeProvider) {
     $routeProvider
         .when('/', {
             templateUrl: 'htm/home.htm',
-            controller: 'home'
+            // controller: 'homeController'
         })
         .when('/login', {
             templateUrl: 'htm/login.htm'
@@ -16,34 +16,7 @@ appNG.config(function ($routeProvider) {
             templateUrl: 'htm/register.htm'
         })
 })
-appNG.controller('home', function ($scope, $http, $location) {
-    if(user != null){
-    $scope.profilePicture = user.url;
-    $scope.username = user.name
-    $scope.numberOfKwaks = user.posts.length;
-    $scope.numberOfFollowing = user.following.length
-    $scope.numberOfFollowers = user.followers.length;
 
-    $scope.group1 = '#group'
-    $scope.group2 = '#group'
-    $scope.group3 = '#group'
-    $scope.group4 = '#group'
-    $scope.group5 = '#group'
-    } else {
-        alert('Log in first')
-        $location.path('/login')
-    }
-
-    // $http({
-    //     method: "GET",
-    //     url: "htm/home.htm"
-    // }).then(function mySuccess(response) {
-    //     console.log(response);
-    // }, function myError(response) {
-    //     console.log('mne')
-    // });
-
-})
 
 appNG.controller('register', function ($http, $scope) {
     $scope.firstname = '';
@@ -81,8 +54,7 @@ appNG.controller('login', function ($http, $scope, $location) {
             } else {
                 user = response.data;
                 $location.path('/');
-                localStorage.clear();
-                localStorage.setItem('user', JSON.stringify(user));
+                sessionStorage.setItem('user', JSON.stringify(user));
             }
         });
     }

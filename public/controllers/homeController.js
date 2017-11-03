@@ -17,8 +17,8 @@ document.addEventListener('DOMContentLoaded', function () {
             isDropingMenuOn = true;
         } else {
             dropMenu.style.display = 'none';
-            isDropingMenuOn = false ;
-        } 
+            isDropingMenuOn = false;
+        }
     })
     var postInput = document.getElementById('postInput');
     document.addEventListener('load', function () {
@@ -28,6 +28,29 @@ document.addEventListener('DOMContentLoaded', function () {
         })
     })
 
+})
+
+appNG.controller('homeController', function ($scope, $http, $location) {
+    if (user == null) {
+        user = JSON.parse(sessionStorage.getItem('user'))
+        console.log(user)
+    }
+    if (user != null) {
+        $scope.profilePicture = user.url;
+        $scope.username = user.username
+        $scope.numberOfKwaks = user.posts.length;
+        $scope.numberOfFollowing = user.following.length
+        $scope.numberOfFollowers = user.followers.length;
+
+        $scope.group1 = '#group'
+        $scope.group2 = '#group'
+        $scope.group3 = '#group'
+        $scope.group4 = '#group'
+        $scope.group5 = '#group'
+    } else if (sessionStorage.length == 0) {
+        alert('Log in first')
+        $location.path('/login')
+    }
 })
 
 
