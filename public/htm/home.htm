@@ -25,13 +25,27 @@
         </div>
     </div>
     <div id='home_center' class='col-lg-6'>
-        <div id='post_from_home' class='col-lg-6'>
+        <div id='post_from_home' ng-show="!writePost" class='col-lg-6'>
             <span>
                 <img width='26px' height='26px'style='border-radius: 50%' src="{{profilePicture}}" alt="">
             </span>
-            <input id='postInput' accept="image/gif,image/jpeg,image/jpg,image/png,video/mp4,video/x-m4v" type="text" placeholder="What`s happening?">
-
+            <input id='postInput' accept="image/gif,image/jpeg,image/jpg,image/png,video/mp4,video/x-m4v" ng-click="writePost = !writePost"
+                type="text" placeholder="What`s happening?">
         </div>
+        <div ng-controller="newKwak" class='post_from_home' ng-show="writePost" ng-hide="!writePost" id='' class='col-lg-6'>
+            <form action="">
+                <span>
+                            <img width='26px' height='26px'style='border-radius: 50%' src="{{profilePicture}}" alt="">
+                        </span>
+                <input ng-model='kwakPost' id='kwakPost' type='text' placeholder="What`s happening?" class='col-lg-6'>
+                <input ng-model='image' id='image' type="text" placeholder="Add image">
+                <input ng-model='video' id='video' type="text" placeholder="Add video">
+                <input ng-model='date' id='date' type="text">
+                <button ng-click="writePost = !writePost">Remove this kwak</button>
+                <button type='submit'>Kwak</button>
+            </form>
+        </div>
+
 
         <div id='mainKwaks' class='col-lg-6'>
             <article>
