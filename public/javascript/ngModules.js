@@ -88,17 +88,18 @@ appNG.filter('searchFor', function () {
 });
 
 appNG.controller('newKwak', function ($scope, $http) {
-    $scope.kwakPost = '';
+    var usernameReq = JSON.parse(sessionStorage.getItem('user')).username;
+    var usernameId = JSON.parse(sessionStorage.getItem('user'))._id;
+    
+    $scope.text = '';
     $scope.image = '';
     $scope.video = '';
-    $scope.date;
-
-    $scope.submitReg = function () {
-        $http.post('/users', JSON.stringify({
-            firstname: $scope.firstname, lastname: $scope.lastname,
-            username: $scope.username, phone: $scope.phone, email: $scope.email, password: $scope.password,
+    $scope.submitKwak = function () {
+        $http.post('/posts', JSON.stringify({
+            text: $scope.text, image: $scope.image,
+            video: $scope.video, data: $scope.data, username: usernameReq, usernameId: usernameId
         })).then(function (response) {
-            console.log(response.data)
+            console.log(response.data);
         });
     }
 })

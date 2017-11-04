@@ -82,11 +82,11 @@ var users = db.collection('users');
 app.post('/posts', function (req, res) {
   var post = new Post();
   post.text = req.body.text;
-  if (req.body.other) {
-    post.other = req.body.other;
-  }
-  post.authorId = req.body.authorId;
+  post.image = req.body.image;
+  post.video = req.body.image;
+  post.date = req.body.date;
   post.username = req.body.username;
+  post.usernameId = req.body.usernameId;
   db.collection('users').update({ 'username': post.username }, { $push: { 'posts': post } });
   post.save(function (err) {
     if (err) {

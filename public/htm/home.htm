@@ -33,14 +33,14 @@
                 type="text" placeholder="What`s happening?">
         </div>
         <div ng-controller="newKwak" class='post_from_home' ng-show="writePost" ng-hide="!writePost" id='' class='col-lg-6'>
-            <form action="">
+            <form action="" ng-submit="submitKwak()">
                 <span>
                             <img width='26px' height='26px'style='border-radius: 50%' src="{{profilePicture}}" alt="">
                         </span>
-                <input ng-model='kwakPost' id='kwakPost' type='text' placeholder="What`s happening?" class='col-lg-6'>
+                <input ng-model='text' id='text' type='text' placeholder="What`s happening?" class='col-lg-6'>
                 <input ng-model='image' id='image' type="text" placeholder="Add image">
                 <input ng-model='video' id='video' type="text" placeholder="Add video">
-                <input ng-model='date' id='date' type="text">
+                <input ng-model='date' id='date' type="text">               
                 <button ng-click="writePost = !writePost">Remove this kwak</button>
                 <button type='submit'>Kwak</button>
             </form>
