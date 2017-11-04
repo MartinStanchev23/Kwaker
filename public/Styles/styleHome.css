@@ -55,6 +55,7 @@
     border-radius: 7px;
     border: 1px solid #FFCE54;
     padding: 3px;
+    margin-left: 5px;
     background-color: antiquewhite;
     word-wrap: break-word;
     white-space: nowrap;
@@ -75,4 +76,23 @@
 }
 #postDate{
     display: none;
+}
+#postForm{
+    text-align: right;
+}
+.postInput{
+    border-radius: 9px;
+    padding: 4px;
+    margin: 4px;
+    width: 230px;
+    border: none;
+    border: 1px solid #FFCE54;
+    background-color: antiquewhite;
+}
+#formWrap{
+    display: inline-block;
+    height: 100%;
+    border: 1px solid #FFCE54;
+    border-radius: 9px;
+    padding: 10px;
 }

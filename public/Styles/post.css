@@ -1,0 +1,15 @@
+.postContentWrapper{
+    margin: 25px;
+    padding: 5px;
+    line-height: 1.2em;
+}
+.imageHolder{
+    text-align: center;
+    margin-top: 5px;
+}
+.imageHolder img{
+    width: 100%
+}
+.buttonWrapper img{
+    cursor: pointer;
+}

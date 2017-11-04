@@ -7,7 +7,8 @@ var PostSchema = new Schema({
     video: {type: String},    
     date:{type: Date, default: Date.now},
     usernameId: {type: String},
-    likes: {type: Number},
+    likes: {type: Number, default: 0},
+    shares:{type: Number, default: 0},
     username:{type: String},
     comments: {type: Array},
     url: {type: String}

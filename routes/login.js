@@ -17,6 +17,7 @@ var connected = false;
 router.post('/', function (req, res, next) {
     // var users = db.getCollection('users');
     // console.log(users);
+    connected = false;
     var email = req.body.email;
     var password = req.body.password;
     db.collection('users').findOne({ email: req.body.email, password: req.body.password }, function (err, user) {

@@ -58,6 +58,10 @@ appNG.controller('homeController', function ($scope, $http, $location) {
         alert('Log in first')
         $location.path('/login')
     }
+    $http.get("./api/posts").then(function(posts){
+        $scope.posts = posts.data;
+
+    })
 })
 
 
