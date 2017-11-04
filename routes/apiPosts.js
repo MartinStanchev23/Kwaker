@@ -15,7 +15,8 @@ router.get('/', function (req, res, next) {
     db.collection('posts').find({}).toArray(function (err, data) {
         res.json(data);
     })
-
 });
+
+
 
 module.exports = router;

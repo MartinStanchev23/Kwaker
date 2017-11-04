@@ -27,11 +27,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
         })
     })
-    if(sessionStorage.length ==0){
+    if (sessionStorage.length == 0) {
         document.getElementById('mainNav').style.display = 'none';
     } else {
         document.getElementById('mainNav').style.display = 'block';
-        
+
     }
 })
 
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
 appNG.controller('homeController', function ($scope, $http, $location) {
     if (user == null) {
         user = JSON.parse(sessionStorage.getItem('user'))
-        console.log(user)
+        console.log(user);
     }
     if (user != null) {
         $scope.profilePicture = user.url;
@@ -48,7 +48,7 @@ appNG.controller('homeController', function ($scope, $http, $location) {
         $scope.numberOfFollowing = user.following.length
         $scope.numberOfFollowers = user.followers.length;
         document.getElementById('mainNav').style.display = 'block';
-        
+
         $scope.group1 = '#group'
         $scope.group2 = '#group'
         $scope.group3 = '#group'
@@ -58,23 +58,39 @@ appNG.controller('homeController', function ($scope, $http, $location) {
         alert('Log in first')
         $location.path('/login')
     }
-    $http.get("./api/posts").then(function(posts){
+    $http.get("./api/posts").then(function (posts) {
         posts.data = posts.data.reverse();
         $scope.posts = posts.data;
-
-
-    })
-    $scope.showImg = function(post){
-        if(post.image.length > 0){
+    });
+    $scope.showImg = function (post) {
+        if (post.image !== undefined) {
             return true;
-        } 
+        }
         return false;
     }
-    $scope.showVideo = function(post){
-        if(post.video.length > 0){
+    $scope.showVideo = function (post) {
+        if (post.video.length > 0) {
             return true;
-        } 
+        }
         return false;
+    }
+    $scope.plusOneLike = function (postId) {
+        console.log(postId);
+        var _id = postId;
+        var user = JSON.parse(sessionStorage.getItem('user'));
+        var userId = JSON.parse(sessionStorage.getItem('user'))._id;
+        var userLikes = JSON.parse(sessionStorage.getItem('user')).likes;
+        console.log(userLikes);
+        console.log(postId);
+        if (!(user.likes.find(x => x == _id))) {
+            $http.post('/', JSON.stringify({
+                _id: postId, userId: userId
+            }))
+        } else {
+            console.log('eeeee laikna go veche, ne moje pak');
+        }
+        user.likes.push(postId)        
+        sessionStorage.setItem('user', JSON.stringify(user))
     }
 })
 

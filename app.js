@@ -117,63 +117,93 @@ app.post('/comments', function (req, res) {
   });
 });
 
-app.use(function (req, res, next) {
-  req.db = db;
-  next();
+app.post('/', function (req, res, next) {
+  var id = req.body._id;
+  var userId = req.body.userId;
+  console.log(id);
+  console.log(userId);
+  
+  Post.findOne({ _id : id }, function (err, post) {
+    console.log(post);
+    if (err) {
+      console.log(err)
+    }
+    post.likes = ((post.likes)+1);
+    post.save(function (err) {
+     if(err){
+       console.log(err)
+     }else {
+       console.log('successfully updated')
+     }
+    });
+  });
+
+  User.findOneAndUpdate({_id: userId}, {$push:{likes: id}}, function(err, doc){
+    if(err){
+        console.log(err);
+    }
+    console.log(doc);
+});
+  
 });
 
-// });
-// Passport setup
-// console.log(passportConfig());
-// app.post('/login', function (req, res) {
-//   var email = req.body.email;
-//   var password = req.body.password;
-// });
+  app.use(function (req, res, next) {
+    req.db = db;
+    next();
+  });
+
+  // });
+  // Passport setup
+  // console.log(passportConfig());
+  // app.post('/login', function (req, res) {
+  //   var email = req.body.email;
+  //   var password = req.body.password;
+  // });
 
 
 
-app.use('/api', apiUsers);
-app.use('/api/posts', apiPosts);
-app.use('/api/comments', apiComments);
+  app.use('/api', apiUsers);
+  app.use('/api/posts', apiPosts);
+  app.use('/api/comments', apiComments);
 
 
-// app.get("*",function(req,res){
-//   res.sendFile(path.join(__dirname + '/public/kwaker.html'));
-// });
+  // app.get("*",function(req,res){
+  //   res.sendFile(path.join(__dirname + '/public/kwaker.html'));
+  // });
 
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hbs');
+  // view engine setup
+  app.set('views', path.join(__dirname, 'views'));
+  app.set('view engine', 'hbs');
 
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+  // uncomment after placing your favicon in /public
+  //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
 
-app.use('/', index);
+  app.use('/', index);
 
-// app.use('/users', users);
-app.use('/home', home);
-app.use('/login', login);
+  // app.use('/users', users);
+  app.use('/home', home);
+  app.use('/login', login);
 
-// catch 404 and forward to error handler
-app.use(function (req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
-});
+  // catch 404 and forward to error handler
+  app.use(function (req, res, next) {
+    var err = new Error('Not Found');
+    err.status = 404;
+    next(err);
+  });
 
 
-// error handler
-app.use(function (err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+  // error handler
+  app.use(function (err, req, res, next) {
+    // set locals, only providing error in development
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
+    // render the error page
+    res.status(err.status || 500);
+    res.render('error');
+  });
 
-module.exports = app;
+  module.exports = app;
