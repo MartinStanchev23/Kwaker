@@ -61,10 +61,10 @@ appNG.controller('login', function ($http, $scope, $location) {
 })
 
 
-appNG.controller('instantSearchCtrl',function($scope,$http){    
+appNG.controller('instantSearchCtrl', function ($scope, $http) {
     $http.get('/api').then(function (data, status, headers, config) {
         $scope.items = data.data;
-    },(function (data, status, headers, config) {
+    }, (function (data, status, headers, config) {
         console.log("No data found..");
     }));
 });
@@ -87,3 +87,19 @@ appNG.filter('searchFor', function () {
     };
 });
 
+appNG.controller('newKwak', function ($scope, $http) {
+    var usernameReq = JSON.parse(sessionStorage.getItem('user')).username;
+    var usernameId = JSON.parse(sessionStorage.getItem('user'))._id;
+    
+    $scope.text = '';
+    $scope.image = '';
+    $scope.video = '';
+    $scope.submitKwak = function () {
+        $http.post('/posts', JSON.stringify({
+            text: $scope.text, image: $scope.image,
+            video: $scope.video, data: $scope.data, username: usernameReq, usernameId: usernameId
+        })).then(function (response) {
+            console.log(response.data);
+        });
+    }
+})

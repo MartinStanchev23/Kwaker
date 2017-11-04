@@ -15,11 +15,16 @@ var mongo = require('mongodb');
 var Promise = require('mpromise');
 var User = require('./models/user');
 var Post = require('./models/post');
+var Comment = require('./models/comment');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var passportConfig = require('./routes/passport');
 var session = require('express-session');
 var apiUsers = require('./routes/apiUsers');
+var apiPosts = require('./routes/apiPosts');
+var apiComments = require('./routes/apiComments');
+
+
 var app = express();
 
 
@@ -80,11 +85,11 @@ var users = db.collection('users');
 app.post('/posts', function (req, res) {
   var post = new Post();
   post.text = req.body.text;
-  if (req.body.other) {
-    post.other = req.body.other;
-  }
-  post.authorId = req.body.authorId;
+  post.image = req.body.image;
+  post.video = req.body.image;
+  post.date = req.body.date;
   post.username = req.body.username;
+  post.usernameId = req.body.usernameId;
   db.collection('users').update({ 'username': post.username }, { $push: { 'posts': post } });
   post.save(function (err) {
     if (err) {
@@ -94,6 +99,22 @@ app.post('/posts', function (req, res) {
     }
   })
 })
+
+
+app.post('/comments', function (req, res) {
+  var comment = new Comment();
+  comment.username = req.body.username;
+  comment.url = req.body.url;
+  comment.text = req.body.text;
+  db.collection('posts').update({ 'username': comment.username }, { $push: { 'comments': comment } });
+  comment.save(function (err) {
+    if (err) {
+      res.send(err);
+    } else {
+      res.send('comment created');
+    }
+  });
+});
 
 app.use(function (req, res, next) {
   req.db = db;
@@ -111,6 +132,10 @@ app.use(function (req, res, next) {
 
 
 app.use('/api', apiUsers);
+app.use('/api/posts', apiPosts);
+app.use('/api/comments', apiComments);
+
+
 // app.get("*",function(req,res){
 //   res.sendFile(path.join(__dirname + '/public/kwaker.html'));
 // });
