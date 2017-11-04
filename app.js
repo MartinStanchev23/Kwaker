@@ -90,6 +90,7 @@ app.post('/posts', function (req, res) {
   post.date = req.body.date;
   post.username = req.body.username;
   post.usernameId = req.body.usernameId;
+  post.url = req.body.url;
   db.collection('users').update({ 'username': post.username }, { $push: { 'posts': post } });
   post.save(function (err) {
     if (err) {

@@ -90,6 +90,7 @@ appNG.filter('searchFor', function () {
 appNG.controller('newKwak', function ($scope, $http) {
     var usernameReq = JSON.parse(sessionStorage.getItem('user')).username;
     var usernameId = JSON.parse(sessionStorage.getItem('user'))._id;
+    var url = JSON.parse(sessionStorage.getItem('user')).url;
     
     $scope.text = '';
     $scope.image = '';
@@ -97,7 +98,7 @@ appNG.controller('newKwak', function ($scope, $http) {
     $scope.submitKwak = function () {
         $http.post('/posts', JSON.stringify({
             text: $scope.text, image: $scope.image,
-            video: $scope.video, data: $scope.data, username: usernameReq, usernameId: usernameId
+            video: $scope.video, data: $scope.data, username: usernameReq, usernameId: usernameId, url: url
         })).then(function (response) {
             console.log(response.data);
         });
