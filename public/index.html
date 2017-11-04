@@ -28,6 +28,7 @@
     <script src="javascript/KwakService.js"></script>
     <script src="javascript/RegisterController.js"></script>
     <script src='controllers/homeController.js'></script>
+    <script src="/node_modules/infinite-scroll/dist/infinite-scroll.pkgd.min.js"></script>
     
 
 
@@ -62,7 +63,7 @@
                             <img width='26px' src="/images/duck.png" alt="">
                         </div>
                     <div id='navProfilePicContainer'>
-                        <img id='navProfilePic' width='32px' ng-src="{{user.url}}" alt="">
+                        <img id='navProfilePic' width='32px' src="{{profilePicture}}" alt="">
                     
                     <div id='rightSideNavWrapper'>
                         <div id='kwakContainer'>
@@ -77,7 +78,7 @@
                                 <input id='searchString' type="text" class="search" ng-model="searchString" placeholder="Search Kwaker" />
                             </div>
                             <ul class="data-ctrl">
-                                <li ng-repeat="i in items | searchFor:searchString">
+                                <li ng-repeat="i in items | searchFor:searchString" >
                                     <p ng-show="searchString">{{i.username}}
                                 </li>
                             </ul>

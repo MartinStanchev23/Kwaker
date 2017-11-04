@@ -139,3 +139,16 @@ a, a:hover{
     text-decoration: none;
     color: antiquewhite;
 }
+.data-ctrl{
+    background-color: antiquewhite;
+    margin-top: -1px;
+    width: 88%;
+    /* text-align: center; */
+    margin-left: 11px;
+    border-left: 1px solid #FFCE54;
+    border-right: 1px solid #FFCE54;
+    border-bottom: 1px solid #FFCE54;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    color: black;
+}

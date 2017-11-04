@@ -59,9 +59,23 @@ appNG.controller('homeController', function ($scope, $http, $location) {
         $location.path('/login')
     }
     $http.get("./api/posts").then(function(posts){
+        posts.data = posts.data.reverse();
         $scope.posts = posts.data;
 
+
     })
+    $scope.showImg = function(post){
+        if(post.image.length > 0){
+            return true;
+        } 
+        return false;
+    }
+    $scope.showVideo = function(post){
+        if(post.video.length > 0){
+            return true;
+        } 
+        return false;
+    }
 })
 
 
