@@ -27,8 +27,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
         })
     })
-
+    if(sessionStorage.length ==0){
+        document.getElementById('mainNav').style.display = 'none';
+    } else {
+        document.getElementById('mainNav').style.display = 'block';
+        
+    }
 })
+
 
 appNG.controller('homeController', function ($scope, $http, $location) {
     if (user == null) {
@@ -41,7 +47,8 @@ appNG.controller('homeController', function ($scope, $http, $location) {
         $scope.numberOfKwaks = user.posts.length;
         $scope.numberOfFollowing = user.following.length
         $scope.numberOfFollowers = user.followers.length;
-
+        document.getElementById('mainNav').style.display = 'block';
+        
         $scope.group1 = '#group'
         $scope.group2 = '#group'
         $scope.group3 = '#group'

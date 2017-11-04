@@ -59,7 +59,7 @@
                             <img width='26px' src="/images/duck.png" alt="">
                         </div>
                     <div id='navProfilePicContainer'>
-                        <img ng-click='hoverMenu()' id='navProfilePic' width='32px' src="/images/avatar.png" alt="">
+                        <img id='navProfilePic' width='32px' ng-src="{{user.url}}" alt="">
                     
                     <div id='rightSideNavWrapper'>
                         <div id='kwakContainer'>
@@ -69,9 +69,9 @@
                         <input ng-click='searchInput()' id='searchInput' type="text" text="" placeholder="Search in Kwaker">
                         <img id='searchIcon' src="/images/search.png" alt="">
                     </div> -->
-                    <div ng-controller="instantSearchCtrl">
+                    <div ng-controller="instantSearchCtrl" id='instantSearchCtrl'>
                             <div class="bar">
-                                <input id='searchString' type="text" class="search" ng-model="searchString" placeholder="Enter your search terms" />
+                                <input id='searchString' type="text" class="search" ng-model="searchString" placeholder="Search Kwaker" />
                             </div>
                             <ul class="data-ctrl">
                                 <li ng-repeat="i in items | searchFor:searchString">
