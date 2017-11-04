@@ -92,6 +92,12 @@ appNG.controller('homeController', function ($scope, $http, $location) {
         user.likes.push(postId)        
         sessionStorage.setItem('user', JSON.stringify(user))
     }
+    $scope.showAllUsers = function(){
+        $http.get('/api').then(function(res){
+            console.log(res.data);
+            $scope.users = res.data;
+        })
+    }
 })
 
 
