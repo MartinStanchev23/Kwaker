@@ -60,7 +60,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //add new user record in database "users"
 app.post('/users', function (req, res) {
-  console.log(req.body);
   var user = new User();
   user.firstname = req.body.firstname;
   user.lastname = req.body.lastname;
@@ -100,6 +99,29 @@ app.post('/posts', function (req, res) {
     }
   })
 })
+app.post('/sharePost', function (req, res) {
+  var postToShare = req.body.post; 
+  console.log(postToShare)
+  var newPost = new Post();
+  newPost.sharedText = postToShare.text;
+  newPost.text = req.body.text;
+  newPost.image = postToShare.image;
+  newPost.video = '';
+  newPost.date = new Date()
+  newPost.username = req.body.username;
+  newPost.usernameId = req.body.usernameId;
+  newPost.url = postToShare.url;
+  console.log('az sym tuk' + newPost)
+  db.collection('users').update({ 'username': newPost.username }, { $push: { 'posts': newPost } });
+  newPost.save(function (err) {
+    if (err) {
+      res.send(err);
+      console.log(err)
+    } else {
+      res.send('post shared');
+    }
+  })
+})
 
 
 app.post('/comments', function (req, res) {
@@ -117,6 +139,8 @@ app.post('/comments', function (req, res) {
   });
 });
 
+
+
 app.use(function (req, res, next) {
   req.db = db;
   next();
@@ -129,7 +153,6 @@ app.use(function (req, res, next) {
 //   var email = req.body.email;
 //   var password = req.body.password;
 // });
-
 
 
 app.use('/api', apiUsers);

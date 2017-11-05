@@ -14,7 +14,8 @@ var UserSchema = new Schema({
     phone: { type: String, required: true, unique: true },
     age: { type: String },
     gender: { type: String },
-    posts: { type: Array }
+    posts: { type: Array },
+    likes: {type: Array}
 });
 
 //encrypting password
