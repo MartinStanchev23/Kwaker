@@ -100,10 +100,10 @@ app.post('/posts', function (req, res) {
   })
 })
 app.post('/sharePost', function (req, res) {
-  var postToShare = req.body.post; 
-  console.log(postToShare)
+  var postToShare = req.body.post;
   var newPost = new Post();
   newPost.sharedText = postToShare.text;
+  console.log(req.body.text + 'TUK TRQBWA DA IZLEZE TEKSTA')
   newPost.text = req.body.text;
   newPost.image = postToShare.image;
   newPost.video = '';
@@ -111,7 +111,6 @@ app.post('/sharePost', function (req, res) {
   newPost.username = req.body.username;
   newPost.usernameId = req.body.usernameId;
   newPost.url = postToShare.url;
-  console.log('az sym tuk' + newPost)
   db.collection('users').update({ 'username': newPost.username }, { $push: { 'posts': newPost } });
   newPost.save(function (err) {
     if (err) {
@@ -155,7 +154,9 @@ app.post('/', function (req, res, next) {
     if (err) {
       console.log(err)
     }
+
     post.likes = ((post.likes) + 1);
+
     post.save(function (err) {
       if (err) {
         console.log(err)

@@ -48,6 +48,7 @@ appNG.controller('homeController', function ($scope, $http, $location) {
         $scope.numberOfFollowing = user.following.length
         $scope.numberOfFollowers = user.followers.length;
         document.getElementById('mainNav').style.display = 'block';
+        // $scope.description = description;
 
         $scope.group1 = '#group'
         $scope.group2 = '#group'
@@ -80,15 +81,16 @@ appNG.controller('homeController', function ($scope, $http, $location) {
             return false;
         }
     }
+    $scope.newText = '';
     $scope.share = function (post) {
         $scope.showShareForm = true;
         $scope.username = user.username;
         $scope.usernameId = user._id;
-        $scope.description = '';
         $scope.post = post;
-        
+
+        console.log($scope.newText)
         $http.post('/sharePost', JSON.stringify({
-            post: $scope.post, text: $scope.description, username: $scope.username,
+            post: $scope.post, text: $scope.newText, username: $scope.username,
             usernameId: $scope.usernameId
         }))
     }

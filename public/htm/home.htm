@@ -48,21 +48,21 @@
 
 
         <div id='mainKwaks' class='col-lg-6' data-infinite-scroll='{ "path": ".pagination__next", "append": ".post", "history": false }'>
-            <article ng-repeat="x in posts">
+            <article ng-repeat="post in posts">
                 <div ng-show='shareP($index)' ng-hide="!shareP($index)">
                     <div class='blackBackground' ng-click="hideShare($index)"></div>
                     <div class="shareForm">
                         <p>Rekwak</p>
                         <div>
-                            <input type="text" ng-model="description" placeholder="Description">
-                            <button ng-click="share(x)">Share Test</button>      
+                            <input type="text" name="newText" ng-model='newText' placeholder="Description">
+                            <button ng-click="share(post)">Share Test</button>      
                         </div>
                     </div>
                 </div>
                 <div>
                     <img width='36px' style='float:left; border-radius: 50%;' ng-src="{{profilePicture}}" alt="">
                     <p>
-                        <strong>{{x.username}}</strong> {{x.date}}</p>
+                        <strong>{{post.username}}</strong> {{post.date}}</p>
                 </div>
                 <!-- dropping menu -->
                 <!-- <div>
@@ -76,12 +76,13 @@
                 </div> -->
                 <div class='postContentWrapper'>
                     <div class='textHolder'>
-                        <p>{{x.text}}</p>
+                        <p>{{post.text}}</p>
+                        <p>{{post.sharedText}}</p>
                     </div>
                     <!-- IMG -->
-                    <div class='imageHolder' ng-show='showImg(x)'>
+                    <div class='imageHolder' ng-show='showImg(post)'>
                         <div class='img'>
-                            <img ng-src="{{x.image}}" alt="">
+                            <img ng-src="{{post.image}}" alt="">
                         </div>
                     </div>
                     <!-- Video -->
@@ -95,13 +96,13 @@
                 <footer>
                     <div class='buttonWrapper'>
                         <img src="images/comment-white-oval-bubble.png" width="20px" alt="Comment">
-                        <span>{{x.comments.length}}</span>
+                        <span>{{post.comments.length}}</span>
                         <img src="images/share.png" ng-click='showShare($index)' width="20px" alt="Rekwak">
-                        <span>{{x.shares}}</span>
+                        <span>{{post.shares}}</span>
 
                         <!-- <div class="heart"></div> -->
-                        <img src="images/like.png" width="20px" alt="">
-                        <span>{{x.likes}}</span>
+                        <img src="images/like.png" ng-click="plusOneLike(post._id)" width="20px" alt="">
+                        <span>{{post.likes}}</span>
                         <img src="images/envelope (1).png" width="20px" alt="Direct Messege">
                     </div>
                 </footer>
