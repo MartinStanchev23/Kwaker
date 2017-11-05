@@ -130,7 +130,12 @@ appNG.controller('homeController', function ($scope, $http, $location) {
             $scope.users = res.data;
         })
     }
-    
+    $scope.showComments = function (post) {
+        if (post !== undefined && post.comments !== undefined) {
+            console.log(post.comments)
+            $scope.comments = post.comments;
+        }
+    }
 })
 appNG.controller('comment', function ($scope, $http, $location) {
     $scope.submitReplay = function (post, textt) {
