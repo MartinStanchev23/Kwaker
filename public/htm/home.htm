@@ -84,7 +84,7 @@
                 <hr>
                 <footer>
                     <div class='buttonWrapper'>
-                        <img src="images/comment-white-oval-bubble.png" width="20px" alt="Comment">
+                        <img src="images/comment-white-oval-bubble.png" ng-click='writeKwak = !writeKwak' width="20px" alt="Comment">
                         <span>{{post.comments.length}}</span>
                         <img src="images/share.png" width="20px" alt="Rekwak">
                         <span>{{post.shares}}</span>
@@ -94,6 +94,12 @@
                         <img src="images/envelope (1).png" width="20px" alt="Direct Messege">
                     </div>
                 </footer>
+                <div ng-controller="comment" ng-show="writeKwak">
+                    <form ng-submit="submitReplay(post)">
+                        <input type="text" id='comm' ng-model='comm' placeholder="Kwak your replay">
+                        <button type='submit'>Replay</button>
+                    </form>
+                </div>
                 <hr>
             </article>
         </div>
@@ -103,8 +109,10 @@
         <h3>Who to follow</h3>
         <table ng-init='showAllUsers()'>
             <tr ng-repeat="user in users">
-                <td ><img width='10px' ng-src='{{user.url}}'/></td>
-                <td >{{user.username}}</td>
+                <td>
+                    <img style='border-radius: 50%' width='100px' ng-src='{{post.url}}' />
+                </td>
+                <td>{{user.username}}</td>
             </tr>
         </table>
     </div>

@@ -89,16 +89,34 @@ appNG.controller('homeController', function ($scope, $http, $location) {
         } else {
             console.log('eeeee laikna go veche, ne moje pak');
         }
-        user.likes.push(postId)        
+        user.likes.push(postId)
         sessionStorage.setItem('user', JSON.stringify(user))
     }
-    $scope.showAllUsers = function(){
-        $http.get('/api').then(function(res){
+    $scope.showAllUsers = function () {
+        $http.get('/api').then(function (res) {
             console.log(res.data);
             $scope.users = res.data;
         })
     }
+    
 })
+appNG.controller('comment', function ($scope, $http, $location) {
+    $scope.submitReplay = function (post, textt) {
+        textt = $scope.comm;
+        console.log(post);
+        var postId = post._id;
+        var username = JSON.parse(sessionStorage.getItem('user')).username;
+        var url = JSON.parse(sessionStorage.getItem('user')).url;
+        console.log(textt);
+
+        $http.post('/comments', JSON.stringify({
+            username: username, url: url,
+            text: textt, postId: postId
+        })).then(function (response) {
+            console.log(response.data);
+        });
+    }
+});
 
 
 
