@@ -15,7 +15,7 @@ var UserSchema = new Schema({
     age: { type: String },
     gender: { type: String },
     posts: { type: Array },
-    likes: { type: Array }
+    likes: {type: Array}
 });
 
 //encrypting password

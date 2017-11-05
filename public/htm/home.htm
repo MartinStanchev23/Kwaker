@@ -48,7 +48,17 @@
 
 
         <div id='mainKwaks' class='col-lg-6' data-infinite-scroll='{ "path": ".pagination__next", "append": ".post", "history": false }'>
-            <article ng-repeat="post in posts">
+            <article ng-repeat="x in posts">
+                <div ng-show='shareP($index)' ng-hide="!shareP($index)">
+                    <div class='blackBackground' ng-click="hideShare($index)"></div>
+                    <div class="shareForm">
+                        <p>Rekwak</p>
+                        <div>
+                            <input type="text" ng-model="description" placeholder="Description">
+                            <button ng-click="share(x)">Share Test</button>      
+                        </div>
+                    </div>
+                </div>
                 <div>
                     <img width='36px' style='float:left; border-radius: 50%;' ng-src="{{profilePicture}}" alt="">
                     <p>

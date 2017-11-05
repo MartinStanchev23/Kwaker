@@ -61,7 +61,37 @@ appNG.controller('homeController', function ($scope, $http, $location) {
     $http.get("./api/posts").then(function (posts) {
         posts.data = posts.data.reverse();
         $scope.posts = posts.data;
-    });
+    })
+
+    $scope.showShares = false;
+    $scope.hideShare = function (index) {
+        la = index;
+        $scope.showShares = false;        
+    }
+    var la;
+    $scope.showShare = function (index) {
+        la = index;
+        $scope.showShares = true;
+    }
+    $scope.shareP = function (ind) {
+        if( la == ind && $scope.showShares){
+            return true;
+        } else {
+            return false;
+        }
+    }
+    $scope.share = function (post) {
+        $scope.showShareForm = true;
+        $scope.username = user.username;
+        $scope.usernameId = user._id;
+        $scope.description = '';
+        $scope.post = post;
+        
+        $http.post('/sharePost', JSON.stringify({
+            post: $scope.post, text: $scope.description, username: $scope.username,
+            usernameId: $scope.usernameId
+        }))
+    }
     $scope.showImg = function (post) {
         if (post.image !== undefined) {
             return true;

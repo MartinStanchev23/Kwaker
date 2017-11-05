@@ -1,6 +1,12 @@
 body{
     font-family: 'PT Sans', sans-serif;
 }
+#mainNavDiv{
+    position: fixed;
+    margin-top: -36px;
+    z-index: 5;
+    width: 100%;  
+}
 #mainNav{
     box-sizing: border-box;
     background-color: #2d2b2d;
