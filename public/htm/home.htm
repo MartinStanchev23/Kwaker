@@ -113,6 +113,14 @@
 
     <div id='home_right' class='col-lg-3'>
         <h3>Who to follow</h3>
+        <table ng-init='showAllUsers()'>
+            <tr ng-repeat="user in users">
+                <td>
+                    <img style='border-radius: 50%' width='100px' ng-src='{{post.url}}' />
+                </td>
+                <td>{{user.username}}</td>
+            </tr>
+        </table>
     </div>
 </div>
 <script src="javascript/ngModules.js"></script>

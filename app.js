@@ -129,7 +129,12 @@ app.post('/comments', function (req, res) {
   comment.username = req.body.username;
   comment.url = req.body.url;
   comment.text = req.body.text;
-  db.collection('posts').update({ 'username': comment.username }, { $push: { 'comments': comment } });
+  Post.findOneAndUpdate({ _id: req.body.postId }, { $push: { comments: comment } }, function (err, doc) {
+    if (err) {
+      console.log(err);
+    }
+    console.log(doc);
+  });
   comment.save(function (err) {
     if (err) {
       res.send(err);
@@ -139,7 +144,35 @@ app.post('/comments', function (req, res) {
   });
 });
 
+app.post('/', function (req, res, next) {
+  var id = req.body._id;
+  var userId = req.body.userId;
+  console.log(id);
+  console.log(userId);
 
+  Post.findOne({ _id: id }, function (err, post) {
+    console.log(post);
+    if (err) {
+      console.log(err)
+    }
+    post.likes = ((post.likes) + 1);
+    post.save(function (err) {
+      if (err) {
+        console.log(err)
+      } else {
+        console.log('successfully updated')
+      }
+    });
+  });
+
+  User.findOneAndUpdate({ _id: userId }, { $push: { likes: id } }, function (err, doc) {
+    if (err) {
+      console.log(err);
+    }
+    console.log(doc);
+  });
+
+});
 
 app.use(function (req, res, next) {
   req.db = db;

@@ -15,6 +15,9 @@ appNG.config(function ($routeProvider) {
         .when('/register', {
             templateUrl: 'htm/register.htm'
         })
+        .when('/profile', {
+            templateUrl: 'htm/profile.htm'
+        })
 })
 
 
