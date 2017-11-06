@@ -21,7 +21,7 @@ router.post('/', function (req, res, next) {
     var email = req.body.email;
     var password = req.body.password;
     db.collection('users').findOne({ email: req.body.email, password: req.body.password }, function (err, user) {
-        if (user != null && !connected ) {
+        if (user !== null && !connected ) {
             res.json(user);
             connected = true;
             // set to true

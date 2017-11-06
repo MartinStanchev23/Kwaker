@@ -81,7 +81,7 @@ appNG.controller('homeController', function ($scope, $http, $location) {
             return false;
         }
     }
-    $scope.newText = '';
+    $scope.postData = {};
     $scope.share = function (post) {
         $scope.showShareForm = true;
         $scope.username = user.username;
@@ -90,7 +90,7 @@ appNG.controller('homeController', function ($scope, $http, $location) {
 
         console.log($scope.newText)
         $http.post('/sharePost', JSON.stringify({
-            post: $scope.post, text: $scope.newText, username: $scope.username,
+            post: $scope.post, text: $scope.postData.description, username: $scope.username,
             usernameId: $scope.usernameId
         }))
     }

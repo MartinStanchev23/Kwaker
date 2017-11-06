@@ -5,15 +5,15 @@ var db = mongoose.connection;
 var users = db.collection('users');
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  users.find(), function (err, user) {
-    if(err){
-      console.log(err)
-    }else{
-      res.json(user);
-      console.log(user);
-      res.send(user)
+    users.find(), function (err, user) {
+        if (err) {
+            console.log(err)
+        } else {
+            res.json(user);
+            console.log(user);
+            res.send(user)
+        }
     }
-  }
 });
 
 module.exports = router;
