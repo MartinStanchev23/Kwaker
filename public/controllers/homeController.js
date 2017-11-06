@@ -114,15 +114,28 @@ appNG.controller('homeController', function ($scope, $http, $location) {
         var userLikes = JSON.parse(sessionStorage.getItem('user')).likes;
         console.log(userLikes);
         console.log(postId);
+
         if (!(user.likes.find(x => x == _id))) {
             $http.post('/', JSON.stringify({
                 _id: postId, userId: userId
             }))
+            user.likes.push(postId)
+            sessionStorage.setItem('user', JSON.stringify(user))
         } else {
-            console.log('eeeee laikna go veche, ne moje pak');
+            if ((user.likes.find(x => x == _id))) {
+                console.log('eeeee laikna go veche, ne moje pak');
+                var index = user.likes.indexOf(postId);
+                user.likes.splice(index, 1);
+                sessionStorage.setItem('user', JSON.stringify(user))
+                $http.post('/m', JSON.stringify({
+                    _id: postId, userId: userId
+                }))
+            }
         }
-        user.likes.push(postId)
-        sessionStorage.setItem('user', JSON.stringify(user))
+        (function () {
+            location.reload();
+        })();
+
     }
     $scope.showAllUsers = function () {
         $http.get('/api').then(function (res) {
@@ -141,20 +154,10 @@ appNG.controller('homeController', function ($scope, $http, $location) {
         $http.post('/comments', JSON.stringify({
             username: username, url: url,
             text: $scope.commentData.comm, postId: postId
-        })).then(function(){
+        })).then(function () {
             location.reload();
         })
     }
-    // var show = false;
-    // $scope.showComments = function () {
-    //     if (show) {
-    //         show = false;
-    //         return false;
-    //     } else {
-    //         show = true;
-    //         return true;
-    //     }
-    // }
 })
 
 

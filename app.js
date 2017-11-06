@@ -159,4 +159,35 @@ app.post('/', function (req, res, next) {
     });
 });
 
+app.post('/m', function (req, res, next) {
+    var id = req.body._id;
+    var userId = req.body.userId;
+    console.log(id);
+    console.log(userId);
+
+    Post.findOne({_id: id}, function (err, post) {
+        console.log(post);
+        if (err) {
+            console.log(err)
+        }
+
+        post.likes = ((post.likes) - 1);
+
+        post.save(function (err) {
+            if (err) {
+                console.log(err)
+            } else {
+                console.log('successfully updated')
+            }
+        });
+    });
+
+    User.findOneAndUpdate({_id: userId}, {$pull: {likes: id}}, function (err, doc) {
+        if (err) {
+            console.log(err);
+        }
+        console.log(doc);
+    });
+});
+
 module.exports = app;
