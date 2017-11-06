@@ -145,16 +145,16 @@ appNG.controller('homeController', function ($scope, $http, $location) {
             location.reload();
         })
     }
-    var show = false;
-    $scope.showComments = function () {
-        if (show) {
-            show = false;
-            return false;
-        } else {
-            show = true;
-            return true;
-        }
-    }
+    // var show = false;
+    // $scope.showComments = function () {
+    //     if (show) {
+    //         show = false;
+    //         return false;
+    //     } else {
+    //         show = true;
+    //         return true;
+    //     }
+    // }
 })
 
 
