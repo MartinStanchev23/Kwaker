@@ -5,6 +5,11 @@
             <div id='profil_pic_and_name'>
                 <img style='border-radius: 50%' width='100px' height="100px" src="{{profilePicture}}" alt="">
                 <h3> {{username}} </h3>
+                <img src="" alt="">
+                <form method="post" enctype="multipart/form-data" ng-submit="sendData()" action="/">
+                    <input id='imageUp' ng-model='files' type="file" name="file">
+                    <input id='submitImg' type="submit" value="Submit">
+                </form>
             </div>
 
             <div id='infoKwaks'>
@@ -13,6 +18,7 @@
                     <span>Following {{numberOfFollowing}}</span>
                     <span>Followers {{numberOfFollowers}}</span>
                 </p>
+                
             </div>
         </div>
         <div class='col-lg-3' id='trends'>

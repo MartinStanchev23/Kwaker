@@ -14,7 +14,7 @@ module.exports = function (app, constants) {
     app.use(bodyParser.urlencoded({
         extended: true
     }));
-
+    
     app.use(session(constants.sessionSecret));
     app.use(cookieParser());
 

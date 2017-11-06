@@ -1,5 +1,7 @@
 var express = require('express');
 var path = require('path');
+var multer = require('multer');
+var upload = multer({ dest: 'public/uploads/' })
 
 var constants = require('./config/constants');
 var middlewareSetup = require('./config/middleware');
@@ -31,7 +33,12 @@ app.set('views', path.join(__dirname, 'views'));
 
 // set frontend code directory path
 app.use(express.static(path.join(__dirname, 'public')));
+//upload img
+app.post('/', upload.any(), function (req, res, next) {
 
+    console.log(req.files + 'files')
+
+})
 //add new user record in database "users"
 app.post('/users', function (req, res) {
     var user = new User();
@@ -64,7 +71,7 @@ app.post('/posts', function (req, res) {
     post.username = req.body.username;
     post.usernameId = req.body.usernameId;
     post.url = req.body.url;
-    User.findOneAndUpdate({'username': post.username}, {$push: {'posts': post}}, function (err, doc) {
+    User.findOneAndUpdate({ 'username': post.username }, { $push: { 'posts': post } }, function (err, doc) {
         if (err) {
             console.log(err);
         }
@@ -78,20 +85,56 @@ app.post('/posts', function (req, res) {
         }
     })
 });
+// app.post('/uploadPhoto', function(req, res){
+//     var profilePicture = req.body.uploadPhoto;
+//     var user = req.body.user;
+
+//     User.findOneAndUpdate({'username': user.username}, {'url': profilePicture}, function(err, doc){
+//         if(err){
+//             console.log(err + 'picture upload failed')
+//         } else {
+//             console.log(doc)
+//         }
+//     })
+// })
+
+// var path = require('path'),
+// fs = require('fs');
+// // ...
+// app.post('/upload', function (req, res) {
+// var tempPath = req.files.file.path,
+//     targetPath = path.resolve('./uploads/image.png');
+// if (path.extname(req.files.file.name).toLowerCase() === '.png') {
+//     fs.rename(tempPath, targetPath, function(err) {
+//         if (err) throw err;
+//         console.log("Upload completed!");
+//     });
+// } else {
+//     fs.unlink(tempPath, function () {
+//         if (err) throw err;
+//         console.error("Only .png files are allowed!");
+//     });
+// }
+// // ...
+// });
+
+// app.get('/image.png', function (req, res) {
+//     res.sendfile(path.resolve('./uploads/image.png'));
+// }); 
 
 app.post('/sharePost', function (req, res) {
     var postToShare = req.body.post;
     var newPost = new Post();
-    newPost.sharedText = '"' + postToShare.text  + '"';;
+    newPost.sharedText = '"' + postToShare.text + '"';;
     console.log(req.body.text + 'TUK TRQBWA DA IZLEZE TEKSTA');
-    newPost.text = req.body.text 
+    newPost.text = req.body.text
     newPost.image = postToShare.image;
     newPost.video = '';
     newPost.date = new Date();
     newPost.username = req.body.username;
     newPost.usernameId = req.body.usernameId;
     newPost.url = postToShare.url;
-    User.findOneAndUpdate({'username': newPost.username}, {$push: {'posts': newPost}}, function (err, doc) {
+    User.findOneAndUpdate({ 'username': newPost.username }, { $push: { 'posts': newPost } }, function (err, doc) {
         if (err) {
             console.log(err);
         }
@@ -113,7 +156,7 @@ app.post('/comments', function (req, res) {
     comment.username = req.body.username;
     comment.url = req.body.url;
     comment.text = req.body.text;
-    Post.findOneAndUpdate({_id: req.body.postId}, {$push: {comments: comment}}, function (err, doc) {
+    Post.findOneAndUpdate({ _id: req.body.postId }, { $push: { comments: comment } }, function (err, doc) {
         if (err) {
             console.log(err);
         }
@@ -134,7 +177,7 @@ app.post('/', function (req, res, next) {
     console.log(id);
     console.log(userId);
 
-    Post.findOne({_id: id}, function (err, post) {
+    Post.findOne({ _id: id }, function (err, post) {
         console.log(post);
         if (err) {
             console.log(err)
@@ -151,7 +194,7 @@ app.post('/', function (req, res, next) {
         });
     });
 
-    User.findOneAndUpdate({_id: userId}, {$push: {likes: id}}, function (err, doc) {
+    User.findOneAndUpdate({ _id: userId }, { $push: { likes: id } }, function (err, doc) {
         if (err) {
             console.log(err);
         }

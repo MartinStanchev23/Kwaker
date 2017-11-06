@@ -27,13 +27,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
         })
     })
-    if (sessionStorage.length == 0) {
-        document.getElementById('mainNav').style.display = 'none';
-    } else {
-        document.getElementById('mainNav').style.display = 'block';
 
-    }
+
 })
+
 
 
 appNG.controller('homeController', function ($scope, $http, $location) {
@@ -67,7 +64,7 @@ appNG.controller('homeController', function ($scope, $http, $location) {
     $scope.showShares = false;
     $scope.hideShare = function (index) {
         la = index;
-        $scope.showShares = false;        
+        $scope.showShares = false;
     }
     var la;
     $scope.showShare = function (index) {
@@ -75,12 +72,31 @@ appNG.controller('homeController', function ($scope, $http, $location) {
         $scope.showShares = true;
     }
     $scope.shareP = function (ind) {
-        if( la == ind && $scope.showShares){
+        if (la == ind && $scope.showShares) {
             return true;
         } else {
             return false;
         }
     }
+
+    $scope.sendData = function () {
+        var formData = $scope.file;
+        var user = JSON.parse(sessionStorage.getItem('user'));
+
+        $http({
+            method: 'POST',
+            url: '/uploadFile',
+            user: user,
+            headers: { 'Content-Type': 'multipart/form-data' },
+            data: formData,
+            transformRequest: function (data, headersGetterFunction) {
+                return data; // do nothing! FormData is very good!
+            },
+        }).then(function (response) {
+            console.log(response);
+        });
+    }
+
     $scope.postData = {};
     $scope.share = function (post) {
         $scope.showShareForm = true;
