@@ -67,7 +67,7 @@ appNG.controller('homeController', function ($scope, $http, $location) {
     $scope.showShares = false;
     $scope.hideShare = function (index) {
         la = index;
-        $scope.showShares = false;        
+        $scope.showShares = false;
     }
     var la;
     $scope.showShare = function (index) {
@@ -75,7 +75,7 @@ appNG.controller('homeController', function ($scope, $http, $location) {
         $scope.showShares = true;
     }
     $scope.shareP = function (ind) {
-        if( la == ind && $scope.showShares){
+        if (la == ind && $scope.showShares) {
             return true;
         } else {
             return false;
@@ -129,31 +129,33 @@ appNG.controller('homeController', function ($scope, $http, $location) {
             console.log(res.data);
             $scope.users = res.data;
         })
+
     }
-    $scope.showComments = function (post) {
-        if (post !== undefined && post.comments !== undefined) {
-            console.log(post.comments)
-            $scope.comments = post.comments;
-        }
-    }
-})
-appNG.controller('comment', function ($scope, $http, $location) {
+    //    COMMENTS
+    $scope.commentData = {};
     $scope.submitReplay = function (post, textt) {
-        textt = $scope.comm;
-        console.log(post);
         var postId = post._id;
         var username = JSON.parse(sessionStorage.getItem('user')).username;
         var url = JSON.parse(sessionStorage.getItem('user')).url;
-        console.log(textt);
 
         $http.post('/comments', JSON.stringify({
             username: username, url: url,
-            text: textt, postId: postId
-        })).then(function (response) {
-            console.log(response.data);
-        });
+            text: $scope.commentData.comm, postId: postId
+        })).then(function(){
+            location.reload();
+        })
     }
-});
+    var show = false;
+    $scope.showComments = function () {
+        if (show) {
+            show = false;
+            return false;
+        } else {
+            show = true;
+            return true;
+        }
+    }
+})
 
 
 
