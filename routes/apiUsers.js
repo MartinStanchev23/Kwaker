@@ -9,9 +9,9 @@ router.get('/', function(req, res, next) {
     // var db = req.db;
   //  console.log(db);
   var db = mongoose.connection;
-  console.log(db);
+  // console.log(db);
     var users = db.collection('users');
-    console.log(users);
+    // console.log(users);
     db.collection('users').find({}).toArray(function(err,data){
         res.json(data);
     })

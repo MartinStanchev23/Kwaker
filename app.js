@@ -35,8 +35,12 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
 //upload img
 app.post('/', upload.any(), function (req, res, next) {
-
-    console.log(req.files + 'files')
+    res.redirect('./');
+    var picUrl = req.files[0].path;
+    console.log(picUrl);
+    console.log(req)
+    console.log('dsvfdvfdvsfdvdfvfdvfdvdfvfd')
+    
 
 })
 //add new user record in database "users"
@@ -75,7 +79,7 @@ app.post('/posts', function (req, res) {
         if (err) {
             console.log(err);
         }
-        console.log(doc);
+        // console.log(doc);
     });
     post.save(function (err) {
         if (err) {
@@ -126,7 +130,6 @@ app.post('/sharePost', function (req, res) {
     var postToShare = req.body.post;
     var newPost = new Post();
     newPost.sharedText = '"' + postToShare.text + '"';;
-    console.log(req.body.text + 'TUK TRQBWA DA IZLEZE TEKSTA');
     newPost.text = req.body.text
     newPost.image = postToShare.image;
     newPost.video = '';
@@ -138,7 +141,7 @@ app.post('/sharePost', function (req, res) {
         if (err) {
             console.log(err);
         }
-        console.log(doc);
+        // console.log(doc);
     });
     newPost.save(function (err) {
         if (err) {
@@ -160,7 +163,7 @@ app.post('/comments', function (req, res) {
         if (err) {
             console.log(err);
         }
-        console.log(doc);
+        // console.log(doc);
     });
     comment.save(function (err) {
         if (err) {
@@ -174,11 +177,11 @@ app.post('/comments', function (req, res) {
 app.post('/', function (req, res, next) {
     var id = req.body._id;
     var userId = req.body.userId;
-    console.log(id);
-    console.log(userId);
+    // console.log(id);
+    // console.log(userId);
 
     Post.findOne({ _id: id }, function (err, post) {
-        console.log(post);
+        // console.log(post);
         if (err) {
             console.log(err)
         }
@@ -198,18 +201,18 @@ app.post('/', function (req, res, next) {
         if (err) {
             console.log(err);
         }
-        console.log(doc);
+        // console.log(doc);
     });
 });
 
 app.post('/m', function (req, res, next) {
     var id = req.body._id;
     var userId = req.body.userId;
-    console.log(id);
-    console.log(userId);
+    // console.log(id);
+    // console.log(userId);
 
     Post.findOne({_id: id}, function (err, post) {
-        console.log(post);
+        // console.log(post);
         if (err) {
             console.log(err)
         }
@@ -229,7 +232,7 @@ app.post('/m', function (req, res, next) {
         if (err) {
             console.log(err);
         }
-        console.log(doc);
+        // console.log(doc);
     });
 });
 

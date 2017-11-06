@@ -79,23 +79,23 @@ appNG.controller('homeController', function ($scope, $http, $location) {
         }
     }
 
-    $scope.sendData = function () {
-        var formData = $scope.file;
-        var user = JSON.parse(sessionStorage.getItem('user'));
+    // $scope.sendData = function () {
+    //     var formData = $scope.file;
+    //     var user = JSON.parse(sessionStorage.getItem('user'));
 
-        $http({
-            method: 'POST',
-            url: '/uploadFile',
-            user: user,
-            headers: { 'Content-Type': 'multipart/form-data' },
-            data: formData,
-            transformRequest: function (data, headersGetterFunction) {
-                return data; // do nothing! FormData is very good!
-            },
-        }).then(function (response) {
-            console.log(response);
-        });
-    }
+    //     $http({
+    //         method: 'POST',
+    //         url: '/uploadFile',
+    //         user: user,
+    //         headers: { 'Content-Type': 'multipart/form-data' },
+    //         data: formData,
+    //         transformRequest: function (data, headersGetterFunction) {
+    //             return data; // do nothing! FormData is very good!
+    //         },
+    //     }).then(function (response) {
+    //         console.log(response);
+    //     });
+    // }
 
     $scope.postData = {};
     $scope.share = function (post) {
