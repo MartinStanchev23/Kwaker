@@ -82,9 +82,9 @@ app.post('/posts', function (req, res) {
 app.post('/sharePost', function (req, res) {
     var postToShare = req.body.post;
     var newPost = new Post();
-    newPost.sharedText = postToShare.text;
+    newPost.sharedText = '"' + postToShare.text  + '"';;
     console.log(req.body.text + 'TUK TRQBWA DA IZLEZE TEKSTA');
-    newPost.text = req.body.text;
+    newPost.text = req.body.text 
     newPost.image = postToShare.image;
     newPost.video = '';
     newPost.date = new Date();
