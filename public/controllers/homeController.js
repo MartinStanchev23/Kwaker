@@ -130,46 +130,51 @@ appNG.controller('homeController', function ($scope, $http, $location) {
         var userLikes = JSON.parse(sessionStorage.getItem('user')).likes;
         console.log(userLikes);
         console.log(postId);
+
         if (!(user.likes.find(x => x == _id))) {
             $http.post('/', JSON.stringify({
                 _id: postId, userId: userId
             }))
+            user.likes.push(postId)
+            sessionStorage.setItem('user', JSON.stringify(user))
         } else {
-            console.log('eeeee laikna go veche, ne moje pak');
+            if ((user.likes.find(x => x == _id))) {
+                console.log('eeeee laikna go veche, ne moje pak');
+                var index = user.likes.indexOf(postId);
+                user.likes.splice(index, 1);
+                sessionStorage.setItem('user', JSON.stringify(user))
+                $http.post('/m', JSON.stringify({
+                    _id: postId, userId: userId
+                }))
+            }
         }
-        user.likes.push(postId)
-        sessionStorage.setItem('user', JSON.stringify(user))
+        (function () {
+            location.reload();
+        })();
+
     }
     $scope.showAllUsers = function () {
         $http.get('/api').then(function (res) {
             console.log(res.data);
             $scope.users = res.data;
         })
+
     }
-    $scope.showComments = function (post) {
-        if (post !== undefined && post.comments !== undefined) {
-            console.log(post.comments)
-            $scope.comments = post.comments;
-        }
-    }
-})
-appNG.controller('comment', function ($scope, $http, $location) {
+    //    COMMENTS
+    $scope.commentData = {};
     $scope.submitReplay = function (post, textt) {
-        textt = $scope.comm;
-        console.log(post);
         var postId = post._id;
         var username = JSON.parse(sessionStorage.getItem('user')).username;
         var url = JSON.parse(sessionStorage.getItem('user')).url;
-        console.log(textt);
 
         $http.post('/comments', JSON.stringify({
             username: username, url: url,
-            text: textt, postId: postId
-        })).then(function (response) {
-            console.log(response.data);
-        });
+            text: $scope.commentData.comm, postId: postId
+        })).then(function () {
+            location.reload();
+        })
     }
-});
+})
 
 
 

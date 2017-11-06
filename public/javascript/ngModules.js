@@ -94,7 +94,7 @@ appNG.controller('newKwak', function ($scope, $http) {
     var usernameReq = JSON.parse(sessionStorage.getItem('user')).username;
     var usernameId = JSON.parse(sessionStorage.getItem('user'))._id;
     var url = JSON.parse(sessionStorage.getItem('user')).url;
-    
+
     $scope.text = '';
     $scope.image = '';
     $scope.video = '';
@@ -104,6 +104,10 @@ appNG.controller('newKwak', function ($scope, $http) {
             video: $scope.video, data: $scope.data, username: usernameReq, usernameId: usernameId, url: url
         })).then(function (response) {
             console.log(response.data);
+            (function () {
+                location.reload();
+            })();
         });
+
     }
 })

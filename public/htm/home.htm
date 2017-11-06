@@ -68,7 +68,13 @@
                 <div>
                     <img width='36px' style='float:left; border-radius: 50%;' ng-src="{{profilePicture}}" alt="">
                     <p>
-                        <strong>{{post.username}}</strong> {{post.date}}</p>
+                        <span class='postUsername'>
+                            {{post.username}}
+                        </span>
+                        <span class="postDate">
+                            {{post.date}}
+                        </span>
+                    </p>
                 </div>
                 <!-- dropping menu -->
                 <!-- <div>
@@ -96,13 +102,36 @@
                         <iframe ng-src="" frameborder="0" allowfullscreen></iframe>
                     </div> -->
                     <!--  -->
-
+                </div>
+                <!-- COMMENT -->
+                <div ng-show="show" ng-hide='!show' class='commentTable'>
+                    <table ng-repeat="comment in post.comments" class='comment'>
+                        <thead>
+                            <tr>
+                                <td>
+                                    <img style='border-radius: 50%' width='30px' ng-src='{{comment.url}}' />
+                                    <span class='commentUser'>{{comment.username}}</span>
+                                    <span class='commentDate'>{{comment.date}}</span>
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <p class='commentText'>{{comment.text}}</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <form ng-submit="submitReplay(post)" class='commentForm'>
+                        <input type="text" id='comm' ng-model='commentData.comm' placeholder="Kwak your reply">
+                        <button type='submit'>Reply</button>
+                    </form>
                 </div>
                 <hr>
                 <footer>
                     <div class='buttonWrapper'>
-                        <img src="images/comment-white-oval-bubble.png" ng-click='showComments(post)' ng-click='writeKwak = !writeKwak' width="20px"
-                            alt="Comment">
+                        <img src="images/comment-white-oval-bubble.png" ng-click='show = !show' width="20px" alt="Comment">
                         <span>{{post.comments.length}}</span>
                         <img src="images/share.png" ng-click='showShare($index)' width="20px" alt="Rekwak">
                         <span>{{post.shares}}</span>
@@ -112,31 +141,13 @@
                         <img src="images/envelope (1).png" width="20px" alt="Direct Messege">
                     </div>
                 </footer>
-
                 <hr>
-            </article>
-            <div>
-                <table ng-show='showComments()'>
-                    <tr ng-repeat="comment in comments">
-                        <td>
-                            <img style='border-radius: 50%' width='30px' ng-src='{{comment.url}}' />
-                        </td>
-                        <td>{{comment.username}}</td>
-                        <td>
-                            <p>{{comment.text}}</p>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-            <div ng-controller="comment" ng-show="writeKwak">
-                <form ng-submit="submitReplay(post)">
-                    <input type="text" id='comm' ng-model='comm' placeholder="Kwak your replay">
-                    <button type='submit'>Replay</button>
-                </form>
-            </div>
         </div>
+
     </div>
 
+    <hr>
+    </article>
     <div id='home_right' class='col-lg-3'>
         <h3>Who to follow</h3>
         <table ng-init='showAllUsers()'>
