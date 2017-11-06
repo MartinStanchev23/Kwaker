@@ -9,7 +9,7 @@
 
             <div id='infoKwaks'>
                 <p>
-                    <span>Kwaks {{numberOfKwaks}}</span>
+                    <span>Kwaks {{posts.length}}</span>
                     <span>Following {{numberOfFollowing}}</span>
                     <span>Followers {{numberOfFollowers}}</span>
                 </p>
@@ -55,7 +55,7 @@
                         <p>Rekwak</p>
                         <div>
                             <input type="text" name="postData.description" ng-model='postData.description' placeholder="Description">
-                            <button ng-click="share(post)">Share Test</button>      
+                            <button ng-click="share(post)">Rekwak</button>
                         </div>
                     </div>
                 </div>
@@ -95,9 +95,10 @@
                 <hr>
                 <footer>
                     <div class='buttonWrapper'>
-                        <img src="images/comment-white-oval-bubble.png" ng-click='showComments(post)' ng-click='writeKwak = !writeKwak' width="20px" alt="Comment">
+                        <img src="images/comment-white-oval-bubble.png" ng-click='showComments(post)' ng-click='writeKwak = !writeKwak' width="20px"
+                            alt="Comment">
                         <span>{{post.comments.length}}</span>
-                        <img src="images/share.png" width="20px" alt="Rekwak">
+                        <img src="images/share.png" ng-click='showShare($index)' width="20px" alt="Rekwak">
                         <span>{{post.shares}}</span>
                         <!-- <div class="heart"></div> -->
                         <img src="images/like.png" ng-click='plusOneLike(post._id)' width="20px" alt="">
@@ -105,20 +106,22 @@
                         <img src="images/envelope (1).png" width="20px" alt="Direct Messege">
                     </div>
                 </footer>
-               
+
                 <hr>
             </article>
             <div>
-                    <table ng-show='showComments()'>
-                        <tr ng-repeat="comment in comments">
-                            <td>
-                                <img style='border-radius: 50%' width='30px' ng-src='{{comment.url}}' />
-                            </td>
-                            <td>{{comment.username}}</td>
-                            <td><p>{{comment.text}}</p></td>
-                        </tr>
-                    </table>
-                </div>
+                <table ng-show='showComments()'>
+                    <tr ng-repeat="comment in comments">
+                        <td>
+                            <img style='border-radius: 50%' width='30px' ng-src='{{comment.url}}' />
+                        </td>
+                        <td>{{comment.username}}</td>
+                        <td>
+                            <p>{{comment.text}}</p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
             <div ng-controller="comment" ng-show="writeKwak">
                 <form ng-submit="submitReplay(post)">
                     <input type="text" id='comm' ng-model='comm' placeholder="Kwak your replay">
