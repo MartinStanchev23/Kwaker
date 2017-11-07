@@ -23,6 +23,9 @@ appNG.config(function ($routeProvider) {
         .when('/messages', {
             templateUrl: 'htm/messages.htm'
         })
+        .when('/kwaks',{
+            templateUrl: 'htm/kwaks.htm'
+        })
 })
 
 
