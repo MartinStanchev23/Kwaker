@@ -41,7 +41,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.post('/', upload.any(), function (req, res, next) {
     console.log(req.files)
     var pic = new Pic();
-    pic.address = req.files[0].path;
+    pic.address = req.files[0].filename;
     pic.save(function (err) {
         if (err) {
             res.send(err);
