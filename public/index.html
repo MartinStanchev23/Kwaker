@@ -96,7 +96,7 @@
                                     </div>
                                     <ul class="data-ctrl">
                                         <li ng-repeat="i in items | searchFor:searchString">
-                                            <p ng-show="searchString">{{i.username}}
+                                            <p ng-click='showSearchedUser(i)' ng-show="searchString">{{i.username}}
                                         </li>
                                     </ul>
                                 </div>

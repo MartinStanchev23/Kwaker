@@ -57,19 +57,19 @@ appNG.controller('login', function ($http, $scope, $location) {
         // if ($scope.password == $scope.confirmPass &&
         //     $scope.password.length > 5 && $scope.email.length > 5 && $scope.email.indexOf('@') != -1) {
         //     // validation email and passs
-            $http.post('/login', JSON.stringify({
-                email: $scope.email, password: $scope.password
-            })).then(function (response) {
+        $http.post('/login', JSON.stringify({
+            email: $scope.email, password: $scope.password
+        })).then(function (response) {
 
-                if (response.data.success == false) {
-                    $location.path('/login');
-                    alert('Ivalid email or password')
-                } else {
-                    user = response.data;
-                    $location.path('/');
-                    sessionStorage.setItem('user', JSON.stringify(user));
-                }
-            });
+            if (response.data.success == false) {
+                $location.path('/login');
+                alert('Ivalid email or password')
+            } else {
+                user = response.data;
+                $location.path('/');
+                sessionStorage.setItem('user', JSON.stringify(user));
+            }
+        });
         // } else {
         //     $location.path('/login');
         //     alert('Invali email or password')
@@ -78,12 +78,23 @@ appNG.controller('login', function ($http, $scope, $location) {
 })
 
 
-appNG.controller('instantSearchCtrl', function ($scope, $http) {
+appNG.controller('instantSearchCtrl', function ($scope, $http, $location) {
     $http.get('/api').then(function (data, status, headers, config) {
         $scope.items = data.data;
     }, (function (data, status, headers, config) {
         console.log("No data found..");
     }));
+
+    $scope.showSearchedUser = function (i) {
+        console.log(i);
+        if (person == undefined) {
+            var person = sessionStorage.setItem('person', JSON.stringify(i));
+            $location.path('/user');
+        } else {
+            location.reload();
+                        
+        }
+    }
 });
 
 
@@ -103,6 +114,7 @@ appNG.filter('searchFor', function () {
         return result;
     };
 });
+
 
 appNG.controller('newKwak', function ($scope, $http) {
     var usernameReq = JSON.parse(sessionStorage.getItem('user')).username;
@@ -131,7 +143,7 @@ appNG.controller('homeButtons', function ($scope, $location) {
         $location.path('/');
         sessionStorage.removeItem('person');
     }
-    $scope.sendMessage = function(){
+    $scope.sendMessage = function () {
         $location.path('/messages');
     }
 })
