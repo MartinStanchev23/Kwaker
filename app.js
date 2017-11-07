@@ -17,6 +17,7 @@ var User = require('./models/user');
 var Post = require('./models/post');
 var Comment = require('./models/comment');
 var Message = require('./models/message');
+var Pic = require('./models/pic')
 
 
 
@@ -37,12 +38,19 @@ app.set('views', path.join(__dirname, 'views'));
 // set frontend code directory path
 app.use(express.static(path.join(__dirname, 'public')));
 //upload img
-app.post('/uploadFile', upload.any(), function (req, res, next) {
-    res.redirect('./');
-    var picUrl = req.files[0].path;
-    console.log(picUrl);
-    console.log(req)
-    console.log('dsvfdvfdvsfdvdfvfdvfdvdfvfd')
+app.post('/', upload.any(), function (req, res, next) {
+   console.log(req.files)
+    var pic = new Pic();
+    pic.address = req.files[0].path;
+    pic.save(function (err) {
+        if (err) {
+            res.send(err);
+        } else {
+            res.redirect('./');
+        }
+    });
+
+
 })
 //add new user record in database "users"
 app.post('/users', function (req, res) {
