@@ -18,6 +18,9 @@ appNG.config(function ($routeProvider) {
         .when('/profile', {
             templateUrl: 'htm/profile.htm'
         })
+        .when('/user', {
+            templateUrl: 'htm/user.htm'
+        })
 })
 
 
@@ -116,6 +119,7 @@ appNG.controller('newKwak', function ($scope, $http) {
 
 appNG.controller('homeButtons', function($scope, $location){
     $scope.homeBtn = function(){
-        $location.path('/')
+        $location.path('/');
+        sessionStorage.removeItem('person');
     }
 })

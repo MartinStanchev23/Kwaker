@@ -99,6 +99,12 @@ appNG.controller('homeController', function ($scope, $http, $location) {
     $scope.getProfile = function(){
         $location.path('/profile')
     }
+    $scope.showUser = function(user){
+        console.log(user);
+        $location.path('/user')
+        var person = user;
+        sessionStorage.setItem('person', JSON.stringify(person));
+    }
     $scope.postData = {};
     $scope.share = function (post) {
         $scope.showShareForm = true;
