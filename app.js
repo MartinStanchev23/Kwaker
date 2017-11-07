@@ -19,6 +19,8 @@ var Comment = require('./models/comment');
 var Message = require('./models/message');
 var Pic = require('./models/pic')
 
+
+
 var app = express();
 
 // initialize addtional Express middleware functions
@@ -243,9 +245,8 @@ app.post('/m', function (req, res, next) {
         if (err) {
             console.log(err)
         }
-
-        post.likes = ((post.likes) - 1);
-
+        post.likes = ((post.likes) + 1);
+        
         post.save(function (err) {
             if (err) {
                 console.log(err)

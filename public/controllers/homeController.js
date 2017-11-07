@@ -152,15 +152,12 @@ appNG.controller('homeController', function ($scope, $http, $location) {
         return false;
     }
     $scope.plusOneLike = function (postId) {
-        console.log(postId);
         var _id = postId;
         var user = JSON.parse(sessionStorage.getItem('user'));
         var userId = JSON.parse(sessionStorage.getItem('user'))._id;
         var userLikes = JSON.parse(sessionStorage.getItem('user')).likes;
-        console.log(userLikes);
-        console.log(postId);
 
-        if (!(user.likes.find(x => x == _id))) {
+        if (!(user.likes.find(x => x != _id))) {
             $http.post('/', JSON.stringify({
                 _id: postId, userId: userId
             }))

@@ -90,13 +90,10 @@
     -webkit-border-radius: 0 !important;
 }
 
-
 .list-group {
     border-radius: 0;
 }
-#profilePosts{
-    padding: 10px;
-}
+
 .list-group .list-group-item {
     background-color: transparent;
     overflow: hidden;
@@ -251,4 +248,69 @@
     border: 2px solid #FFCE54;
     margin: 5px;
     border-radius: 10px;
+}
+#m{
+    margin: auto;
+}
+/*Contact sectiom*/
+.content-header{
+font-family: 'Oleo Script', cursive;
+color:black;
+font-size: 45px;
+}
+
+.section-content{
+text-align: center; 
+
+}
+#contact{
+
+font-family: 'Teko', sans-serif;
+padding-top: 60px;
+border-radius:  5px;
+margin-top: 10px;
+border: 1px solid white;
+width: 100%;
+width: 100vw;
+height: 550px;
+background: #3a6186; /* fallback for old browsers */
+background: -webkit-linear-gradient(to left, #d6b300 , #966100); /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to left, #d6b300 , #966100); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+color : #fff;    
+}
+.contact-section{
+padding-top: 40px;
+}
+.contact-section .col-md-6{
+width: 50%;
+}
+
+.form-line{
+border-right: 1px solid #B29999;
+}
+
+.form-group{
+margin-top: 10px;
+}
+label{
+font-size: 1.3em;
+line-height: 1em;
+font-weight: normal;
+}
+.form-control{
+font-size: 1.3em;
+color: #080808;
+}
+textarea.form-control {
+height: 135px;
+/* margin-top: px;*/
+}
+
+.submit{
+font-size: 1.1em;
+float: right;
+width: 150px;
+background-color: transparent;
+color: #fff;
+
 }
