@@ -129,4 +129,55 @@
     font-size: 28px;
     margin-bottom: 5px;
 }
+#imageUp{
+    background: none;
+    border: none;
+}
+#submitImg{
+    background: none;
+    border: none;
 
+}
+.inputFile{
+
+        width: 0.1px;
+        height: 0.1px;
+        opacity: 0;
+        overflow: hidden;
+        position: absolute;
+        z-index: -1;
+}
+#labelForFileInput{
+    font-size: 1em;
+    line-height: 1em;
+    font-weight: normal;
+    background: #FFCE54;
+    color: black;
+    border-radius: 15px;
+    padding: 8px;
+    width: 130px;
+    text-align: center;
+    margin-bottom: 10px;
+    margin-left: 5px;
+    margin-top: 4px;
+}
+#submitImgBut{
+    margin-left: 5px;
+    width: 130px;
+    height: 32px;
+}
+#usernameCss{
+    font-size: 24px;
+    text-align: center;
+    font-weight: bold;
+}
+#profileButtons{
+    
+    text-align: center;
+    margin: 4px;
+    margin-top: 14px;
+}
+.profileButtons{
+    font-size: 15px;
+    
+}

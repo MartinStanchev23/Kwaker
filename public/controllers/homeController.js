@@ -62,17 +62,16 @@ appNG.controller('homeController', function ($scope, $http, $location) {
     })
 
     $http.get("/api/pics").then(function (pics) {
-        console.log(pics.data)
         var reversePics = pics.data.reverse();
         var firstPic = reversePics[0];
         console.log(firstPic);
         var user = JSON.parse(sessionStorage.getItem('user'));
-   
-        user.url = "http://localhost:3020/uploads/" + firstPic.address + '.jpg';
+
+        sessionStorage.setItem('user', JSON.stringify(user));
+
+        user.url = "./uploads/" + firstPic.address;
         console.log(user.url);
         $scope.user = user;
-        // sessionStorage.setItem('user', JSON.stringify(user));
-        
 
     })
     $scope.showShares = false;
