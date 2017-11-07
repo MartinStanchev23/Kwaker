@@ -1,4 +1,4 @@
-appNG.controller('profileController', function ($scope, $http, $location) {
+appNG.controller('profilPage', function ($scope, $http, $location) {
     if (user == null) {
         user = JSON.parse(sessionStorage.getItem('user'))
         console.log(user);
@@ -12,4 +12,7 @@ appNG.controller('profileController', function ($scope, $http, $location) {
         $scope.numberOfFollowers = user.followers.length;
         $scope.likes = user.likes.length;
     }
+    var userPosts = JSON.parse(sessionStorage.getItem('user')).posts;
+    console.log(userPosts);
+    $scope.posts = userPosts;
 });
