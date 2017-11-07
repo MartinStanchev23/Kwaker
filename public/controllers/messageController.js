@@ -28,4 +28,14 @@ appNG.controller('message', function ($scope, $http, $location) {
             $scope.showReplyForm = true;
         }
     }
+    $scope.submitMessageReply = function(r){
+        console.log(r);
+        var activeUserName = JSON.parse(sessionStorage.getItem('user')).username;        
+        $http.post('/messages', JSON.stringify({
+            usernameR: r.usernameS, usernameS: activeUserName,
+            text: $scope.messageReply
+        })).then(function (response) {
+            console.log(response.data)
+        });
+    }
 });
