@@ -12,4 +12,15 @@ appNG.controller('userPage', function ($scope, $http, $location) {
     var userPosts = JSON.parse(sessionStorage.getItem('person')).posts;
     console.log(userPosts);
     $scope.posts = userPosts;
+    
+    $scope.sendMessage = function () {
+        var username = JSON.parse(sessionStorage.getItem('user')).username
+        var reciever = JSON.parse(sessionStorage.getItem('person')).username
+        var messageText = $scope.messageText;
+        $http.post('/user', JSON.stringify({
+            messageText: $scope.messageText, username: username, reciever: reciever
+        })).then(function (response) {
+            console.log(response.data);
+        });
+    }
 });

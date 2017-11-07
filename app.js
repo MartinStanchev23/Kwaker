@@ -16,6 +16,7 @@ var login = require('./routes/login');
 var User = require('./models/user');
 var Post = require('./models/post');
 var Comment = require('./models/comment');
+var Message = require('./models/message');
 
 var app = express();
 
@@ -40,7 +41,7 @@ app.post('/', upload.any(), function (req, res, next) {
     console.log(picUrl);
     console.log(req)
     console.log('dsvfdvfdvsfdvdfvfdvfdvdfvfd')
-    
+
 
 })
 //add new user record in database "users"
@@ -60,7 +61,7 @@ app.post('/users', function (req, res) {
             res.send('user created');
         }
     });
-    
+
 });
 
 //add new post record in database "posts"
@@ -175,6 +176,25 @@ app.post('/comments', function (req, res) {
     });
 });
 
+app.post('/user', function (req, res) {
+    var message = new Message();
+    message.text = req.body.messageText;
+    message.usernameR = req.body.reciever;
+    message.usernameS = req.body.username;
+    User.findOneAndUpdate({ username: req.body.reciever }, { $push: { followers: message } }, function (err, doc) {
+        if (err) {
+            console.log(err);
+        }
+        // console.log(doc);
+    });
+    message.save(function (err) {
+        if (err) {
+            res.send(err);
+        } else {
+            res.send('message created');
+        }
+    });
+})
 app.post('/', function (req, res, next) {
     var id = req.body._id;
     var userId = req.body.userId;
@@ -212,7 +232,7 @@ app.post('/m', function (req, res, next) {
     // console.log(id);
     // console.log(userId);
 
-    Post.findOne({_id: id}, function (err, post) {
+    Post.findOne({ _id: id }, function (err, post) {
         // console.log(post);
         if (err) {
             console.log(err)
@@ -229,7 +249,7 @@ app.post('/m', function (req, res, next) {
         });
     });
 
-    User.findOneAndUpdate({_id: userId}, {$pull: {likes: id}}, function (err, doc) {
+    User.findOneAndUpdate({ _id: userId }, { $pull: { likes: id } }, function (err, doc) {
         if (err) {
             console.log(err);
         }
