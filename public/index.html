@@ -55,7 +55,7 @@
 <body>
     <div ng-app="mainContent">
         <header>
-            <div id='mainNavDiv'>
+            <div ng-controller='homeButtons' id='mainNavDiv'>
                 <nav id='mainNav'>
                     <div id='navWrapper'>
                         <div ng-controller='homeButtons' id='homeButtons'>
@@ -84,7 +84,7 @@
 
                             <div id='rightSideNavWrapper'>
                                 <div id='kwakContainer'>
-                                    <button id='kwakBut'>Kwak</button>
+                                    <button ng-click='logOut()' id='kwakBut'>Log out</button>
                                 </div>
                                 <!-- <div id='searchBar'>
                         <input ng-click='searchInput()' id='searchInput' type="text" text="" placeholder="Search in Kwaker">

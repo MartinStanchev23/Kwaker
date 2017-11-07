@@ -149,4 +149,9 @@ appNG.controller('homeButtons', function ($scope, $location) {
     $scope.sendMessage = function () {
         $location.path('/messages');
     }
+    $scope.logOut = function(){
+        sessionStorage.clear();
+        location.reload();
+    }
 })
+
