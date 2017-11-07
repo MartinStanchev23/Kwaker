@@ -67,12 +67,18 @@ appNG.controller('homeController', function ($scope, $http, $location) {
     var firstPic = reversePics[0];
     console.log(firstPic);
     var user = JSON.parse(sessionStorage.getItem('user'));
-    user.url = firstPic.address;
+    // user.url = firstPic.address;
     var base64 = firstPic.address;
     // var buf = new Buffer(base64, 'base64'); // Ta-da
-    console.log(buf);
-    console.log(user.url)
+    // console.log(buf);
+    console.log(base64)
     sessionStorage.setItem('user', JSON.stringify(user));
+    var snimka = function hexToBase64(str) {
+        return btoa(String.fromCharCode.apply(null, str.replace(/\r|\n/g, "").replace(/([\da-fA-F]{2}) ?/g, "0x$1 ").replace(/ +$/, "").split(" ")));
+    }
+    var lastUrl = snimka(base64);
+    user.url = 'data:image/jpeg;base64,' + lastUrl;
+    console.log(user.url)
     
     
     })
