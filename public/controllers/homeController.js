@@ -61,6 +61,21 @@ appNG.controller('homeController', function ($scope, $http, $location) {
         $scope.posts = posts.data;
     })
 
+    $http.get("/api/pics").then(function (pics) {
+       console.log(pics.data)
+    var reversePics = pics.data.reverse();
+    var firstPic = reversePics[0];
+    console.log(firstPic);
+    var user = JSON.parse(sessionStorage.getItem('user'));
+    user.url = firstPic.address;
+    var base64 = firstPic.address;
+    // var buf = new Buffer(base64, 'base64'); // Ta-da
+    console.log(buf);
+    console.log(user.url)
+    sessionStorage.setItem('user', JSON.stringify(user));
+    
+    
+    })
     $scope.showShares = false;
     $scope.hideShare = function (index) {
         la = index;
@@ -96,10 +111,10 @@ appNG.controller('homeController', function ($scope, $http, $location) {
     //         console.log(response);
     //     });
     // }
-    $scope.getProfile = function(){
+    $scope.getProfile = function () {
         $location.path('/profile')
     }
-    $scope.showUser = function(user){
+    $scope.showUser = function (user) {
         console.log(user);
         $location.path('/user')
         var person = user;

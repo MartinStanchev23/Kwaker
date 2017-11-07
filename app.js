@@ -17,6 +17,7 @@ var User = require('./models/user');
 var Post = require('./models/post');
 var Comment = require('./models/comment');
 var Message = require('./models/message');
+var Pic = require('./models/pic')
 
 var app = express();
 
@@ -36,11 +37,16 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
 //upload img
 app.post('/', upload.any(), function (req, res, next) {
-    res.redirect('./');
-    var picUrl = req.files[0].path;
-    console.log(picUrl);
-    console.log(req)
-    console.log('dsvfdvfdvsfdvdfvfdvfdvdfvfd')
+   console.log(req.files)
+    var pic = new Pic();
+    pic.address = req.files[0].path;
+    pic.save(function (err) {
+        if (err) {
+            res.send(err);
+        } else {
+            res.redirect('./');
+        }
+    });
 
 
 })
