@@ -1,4 +1,4 @@
-<div ng-controller="homeController" class='row'>
+<div ng-controller="homeController" class='row' ng-app="angularSlideables">
 
     <div id='home_left' class='col-lg-3'>
         <div class='col-lg-3' id='user_info_left'>
@@ -106,7 +106,7 @@
                 </div>
                 <!-- COMMENT -->
                 <div ng-show="show" ng-hide='!show' class='commentTable'>
-                    <table ng-repeat="comment in post.comments" class='comment'>
+                    <table ng-repeat="comment in post.comments" id="row_{{$index}}" class='slideable' class='comment'>
                         <thead>
                             <tr>
                                 <td>
@@ -132,7 +132,7 @@
                 <hr>
                 <footer>
                     <div class='buttonWrapper'>
-                        <img src="images/comment-white-oval-bubble.png" ng-click='show = !show' width="20px" alt="Comment">
+                        <img src="images/comment-white-oval-bubble.png" slide-toggle="#row_{{$index}}" ng-click='show = !show' width="20px" alt="Comment">
                         <span>{{post.comments.length}}</span>
                         <img src="images/share.png" ng-click='showShare($index)' width="20px" alt="Rekwak">
                         <span>{{post.shares}}</span>

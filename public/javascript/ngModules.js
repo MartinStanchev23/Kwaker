@@ -2,7 +2,6 @@
 //module definition
 var appNG = angular.module('mainContent', ['ngRoute']);
 var user = null;
-
 appNG.config(function ($routeProvider) {
     $routeProvider
         .when('/', {

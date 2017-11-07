@@ -18,6 +18,8 @@ var Post = require('./models/post');
 var Comment = require('./models/comment');
 var Message = require('./models/message');
 
+
+
 var app = express();
 
 // initialize addtional Express middleware functions
@@ -35,14 +37,12 @@ app.set('views', path.join(__dirname, 'views'));
 // set frontend code directory path
 app.use(express.static(path.join(__dirname, 'public')));
 //upload img
-app.post('/', upload.any(), function (req, res, next) {
+app.post('/uploadFile', upload.any(), function (req, res, next) {
     res.redirect('./');
     var picUrl = req.files[0].path;
     console.log(picUrl);
     console.log(req)
     console.log('dsvfdvfdvsfdvdfvfdvfdvdfvfd')
-
-
 })
 //add new user record in database "users"
 app.post('/users', function (req, res) {
@@ -237,9 +237,8 @@ app.post('/m', function (req, res, next) {
         if (err) {
             console.log(err)
         }
-
-        post.likes = ((post.likes) - 1);
-
+        post.likes = ((post.likes) + 1);
+        
         post.save(function (err) {
             if (err) {
                 console.log(err)
