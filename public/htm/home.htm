@@ -3,7 +3,8 @@
     <div id='home_left' class='col-lg-3'>
         <div class='col-lg-3' id='user_info_left'>
             <div id='profil_pic_and_name'>
-                <img id='profilePic' ng-click='getProfile()' style='border-radius: 50%' width='100px' height="100px" src="{{profilePicture}}" alt="">
+                <img id='profilePic' ng-click='getProfile()' style='border-radius: 50%' width='100px' height="100px" src="{{profilePicture}}"
+                    alt="">
                 <h3> {{username}} </h3>
                 <img src="" alt="">
                 <form method="post" enctype="multipart/form-data" action="/">
@@ -18,7 +19,7 @@
                     <span>Following {{numberOfFollowing}}</span>
                     <span>Followers {{numberOfFollowers}}</span>
                 </p>
-                
+
             </div>
         </div>
         <div class='col-lg-3' id='trends'>
@@ -72,7 +73,7 @@
                             {{post.username}}
                         </span>
                         <span class="postDate">
-                            {{post.date}}
+                            {{post.date | date : format : timezone}}
                         </span>
                     </p>
                 </div>
@@ -111,7 +112,7 @@
                                 <td>
                                     <img style='border-radius: 50%' width='30px' ng-src='{{comment.url}}' />
                                     <span class='commentUser'>{{comment.username}}</span>
-                                    <span class='commentDate'>{{comment.date}}</span>
+                                    <span class='commentDate'>{{comment.date | date : format : timezone}}</span>
                                 </td>
                             </tr>
                         </thead>
@@ -149,14 +150,19 @@
     <hr>
     </article>
     <div id='home_right' class='col-lg-3'>
-        <h3>Who to follow</h3>
+        <h3 id='whoToFollow'>Who to follow...</h3>
         <table ng-init='showAllUsers()'>
             <tr ng-repeat="user in users">
                 <td>
-                    <img class='userP' ng-click='showUser(user)' style='border-radius: 50%' width='100px' ng-src='{{user.url}}' />
+                    <img class='userP' ng-click='showUser(user)' style='border-radius: 50%; margin-bottom: 10px;' width='80px' ng-src='{{user.url}}' />
                 </td>
-                <td>{{user.username}}</td>
+                <td class='whoToFollowInfo'><p>{{user.username}}</p>
+                    <button ng-click='follow(user)'>Follow</button>
+                    <button ng-click='unfollow(user)'>Unfollow</button>
+                </td>
+                <hr>
             </tr>
+            
         </table>
     </div>
 </div>

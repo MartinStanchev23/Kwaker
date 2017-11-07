@@ -107,3 +107,26 @@
 .userP{
     cursor: pointer;
 }
+.whoToFollowInfo{
+    text-align: center;
+    vertical-align: -webkit-baseline-middle;
+}
+.whoToFollowInfo button{
+    margin-top: 5px;
+    height: 25px;
+    width: 155px;
+}
+.whoToFollowInfo p{
+    font-size: 16px;
+    font-weight: bold;
+    color: antiquewhite;
+}
+.whoToFollowInfo button:hover{
+    background: goldenrod;
+}
+#whoToFollow{
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 5px;
+}
+

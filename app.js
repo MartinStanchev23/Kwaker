@@ -39,7 +39,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
 //upload img
 app.post('/', upload.any(), function (req, res, next) {
-   console.log(req.files)
+    console.log(req.files)
     var pic = new Pic();
     pic.address = req.files[0].path;
     pic.save(function (err) {
@@ -246,7 +246,7 @@ app.post('/m', function (req, res, next) {
             console.log(err)
         }
         post.likes = ((post.likes) + 1);
-        
+
         post.save(function (err) {
             if (err) {
                 console.log(err)
@@ -262,6 +262,76 @@ app.post('/m', function (req, res, next) {
         }
         // console.log(doc);
     });
-});
 
+});
+app.post('/follow', function (req, res, next) {
+    var userToFollow = req.body.userToFollow;
+    var currentUser = req.body.currentUser;
+    console.log(userToFollow)
+    console.log(currentUser)
+    if (userToFollow.followers.find(id => currentUser._id == id) != undefined &&
+        currentUser.following.find(id => currentUser._id == id) != undefined) {
+        User.findOneAndUpdate({ _id: userToFollow._id }, { $push: { followers: currentUser._id } }, function (err, doc) {
+            if (err) {
+                console.log(err);
+            }
+            user.save(function (err) {
+                if (err) {
+                    console.log(err)
+                } else {
+                    console.log('successfully followed')
+                }
+            });
+            // console.log(doc);
+        });
+        User.findOneAndUpdate({ _id: currentUser._id }, { $push: { following: userToFollow._id } }, function (err, doc) {
+            if (err) {
+                console.log(err);
+            }
+            // console.log(doc);
+            user.save(function (err) {
+                if (err) {
+                    console.log(err)
+                } else {
+                    console.log('successfully followed 2')
+                }
+            });
+        });
+    }
+
+})
+
+app.post('/unfollow', function (req, res, next) {
+    var userToFollow = req.body.userToFollow;
+    var currentUser = req.body.currentUser;
+    if (userToFollow.followers.find(id => currentUser._id == id) != undefined &&
+        currentUser.following.find(id => currentUser._id == id) != undefined) {
+        User.findOneAndUpdate({ _id: userToFollow._id }, { $pull: { followers: currentUser._id } }, function (err, doc) {
+            if (err) {
+                console.log(err);
+            }
+            user.save(function (err) {
+                if (err) {
+                    console.log(err)
+                } else {
+                    console.log('successfully unfollowed')
+                }
+            });
+            // console.log(doc);
+        });
+        User.findOneAndUpdate({ _id: currentUser._id }, { $pull: { following: userToFollow._id } }, function (err, doc) {
+            if (err) {
+                console.log(err);
+            }
+            // console.log(doc);
+            user.save(function (err) {
+                if (err) {
+                    console.log(err)
+                } else {
+                    console.log('successfully unfollowed 2')
+                }
+            });
+        });
+    }
+})
 module.exports = app;

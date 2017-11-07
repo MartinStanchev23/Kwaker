@@ -41,29 +41,36 @@ appNG.controller('register', function ($http, $scope, $location) {
             $location.path('/login')
         });
     }
-  
+
 });
 
 appNG.controller('login', function ($http, $scope, $location) {
     $scope.email = '';
     $scope.password = '';
+    $scope.confirmPass = '';
 
     $scope.submitLogin = function () {
 
-        // validation email and passs
-        $http.post('/login', JSON.stringify({
-            email: $scope.email, password: $scope.password
-        })).then(function (response) {
+        if ($scope.password == $scope.confirmPass &&
+            $scope.password.length > 5 && $scope.email.length > 5 && $scope.email.indexOf('@') != -1) {
+            // validation email and passs
+            $http.post('/login', JSON.stringify({
+                email: $scope.email, password: $scope.password
+            })).then(function (response) {
 
-            if (response.data.success == false) {
-                $location.path('/login');
-                alert('Ivalid name or password')
-            } else {
-                user = response.data;
-                $location.path('/');
-                sessionStorage.setItem('user', JSON.stringify(user));
-            }
-        });
+                if (response.data.success == false) {
+                    $location.path('/login');
+                    alert('Ivalid email or password')
+                } else {
+                    user = response.data;
+                    $location.path('/');
+                    sessionStorage.setItem('user', JSON.stringify(user));
+                }
+            });
+        } else {
+            $location.path('/login');
+            alert('Invali email or password')
+        }
     }
 })
 
@@ -116,8 +123,8 @@ appNG.controller('newKwak', function ($scope, $http) {
     }
 })
 
-appNG.controller('homeButtons', function($scope, $location){
-    $scope.homeBtn = function(){
+appNG.controller('homeButtons', function ($scope, $location) {
+    $scope.homeBtn = function () {
         $location.path('/');
         sessionStorage.removeItem('person');
     }
