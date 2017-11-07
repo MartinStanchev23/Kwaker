@@ -314,3 +314,41 @@ background-color: transparent;
 color: #fff;
 
 }
+
+.messageUsername{
+    font-size: 18px;
+    font-weight: bold;
+    height: 5px;
+}
+.messageContainer{
+    border: 1px solid black;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 10px;
+    background-color: #FFCE54;
+    color: black;
+    width: 50%;
+}
+.messageText{
+    padding-left: 10px;
+}
+.replyButton{
+    height: 24px;
+}
+.messageReply{
+    margin: 10px;
+    border-radius: 10px;
+    padding: 10px;
+    height: 39px;
+    width: 50%;
+    background: antiquewhite;
+    color: black;
+}
+#sendReplyButton{
+    display: block;
+    height: 20px;
+    margin-top: -5px;
+}
+.replyButton:hover{
+    background-color: goldenrod;
+}

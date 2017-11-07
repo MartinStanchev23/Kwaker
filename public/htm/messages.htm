@@ -1,18 +1,19 @@
 <div ng-controller="message">
-    <button ng-click='viewMessages()'>View messages:</button>
+    <button ng-click='viewMessages()' class='replyButton'>View messages:</button>
     <div ng-repeat="r in result">
         <div class='messageContainer'>
             <p class='messageUsername'>
                 {{r.usernameS}} said:
+                <hr>
             </p>
             <p class='messageText'>
                 " {{r.text}} "
             </p>
         </div>
-        <button ng-click='show = !show'>Reply to this message</button>
+        <button class='replyButton' ng-click='show = !show'>Reply to this message</button>
         <form ng-submit='submitMessageReply(r)' ng-show='show' ng-hide='!show'>
             <textarea class="messageReply" ng-model='messageReply' cols="30" rows="10" placeholder="Write a message..."></textarea>
-            <button type='submit'> Send reply</button>
+            <button type='submit' class='replyButton' id='sendReplyButton'> Send reply</button>
         </form>
     </div>
 </div>

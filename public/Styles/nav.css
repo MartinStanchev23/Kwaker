@@ -28,9 +28,10 @@ body{
     width: 125px;
 }
 .navDiv:hover{
-    background-color: #FFCE54;
+    background-color: goldenrod;
     cursor: pointer;
 }
+
 #homeButtons{
     display: inline-block;
     height: 100%;
