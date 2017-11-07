@@ -1,6 +1,0 @@
-//search bar
-
-function searchInput(){
-    
-}
-  

@@ -72,6 +72,11 @@ appNG.controller('homeController', function ($scope, $http, $location) {
         user.url = "./uploads/" + firstPic.address;
         console.log(user.url);
         $scope.user = user;
+        $http.post('/users', JSON.stringify({
+            firstname: user.username, url: user.url
+        })).then(function (response) {
+            console.log(response.data);
+        });
 
     })
     $scope.showShares = false;

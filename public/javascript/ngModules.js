@@ -34,16 +34,22 @@ appNG.controller('register', function ($http, $scope, $location) {
     $scope.email = '';
     $scope.password = '';
 
-
-    $scope.submitReg = function () {
-        $http.post('/users', JSON.stringify({
-            firstname: $scope.firstname, lastname: $scope.lastname,
-            username: $scope.username, phone: $scope.phone, email: $scope.email, password: $scope.password,
-        })).then(function (response) {
-            console.log(response.data)
-            $location.path('/login')
-        });
-    }
+    // if ($scope.password == $scope.confirmPass &&
+    //     $scope.password.length > 5 && $scope.email.length > 5 && $scope.email.indexOf('@') != -1) {
+    //     // validation email and passs
+        $scope.submitReg = function () {
+            $http.post('/users', JSON.stringify({
+                firstname: $scope.firstname, lastname: $scope.lastname,
+                username: $scope.username, phone: $scope.phone, email: $scope.email, password: $scope.password,
+            })).then(function (response) {
+                console.log(response.data)
+                $location.path('/login')
+            });
+        }
+    // } else {
+    //     $location.path('/login');
+    //     alert('Invali email or password')
+    // }
 
 });
 
@@ -54,9 +60,6 @@ appNG.controller('login', function ($http, $scope, $location) {
 
     $scope.submitLogin = function () {
 
-        // if ($scope.password == $scope.confirmPass &&
-        //     $scope.password.length > 5 && $scope.email.length > 5 && $scope.email.indexOf('@') != -1) {
-        //     // validation email and passs
         $http.post('/login', JSON.stringify({
             email: $scope.email, password: $scope.password
         })).then(function (response) {
@@ -70,10 +73,7 @@ appNG.controller('login', function ($http, $scope, $location) {
                 sessionStorage.setItem('user', JSON.stringify(user));
             }
         });
-        // } else {
-        //     $location.path('/login');
-        //     alert('Invali email or password')
-        // }
+
     }
 })
 
@@ -92,7 +92,7 @@ appNG.controller('instantSearchCtrl', function ($scope, $http, $location) {
             $location.path('/user');
         } else {
             location.reload();
-                        
+
         }
     }
 });

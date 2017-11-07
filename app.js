@@ -99,42 +99,6 @@ app.post('/posts', function (req, res) {
         }
     })
 });
-// app.post('/uploadPhoto', function(req, res){
-//     var profilePicture = req.body.uploadPhoto;
-//     var user = req.body.user;
-
-//     User.findOneAndUpdate({'username': user.username}, {'url': profilePicture}, function(err, doc){
-//         if(err){
-//             console.log(err + 'picture upload failed')
-//         } else {
-//             console.log(doc)
-//         }
-//     })
-// })
-
-// var path = require('path'),
-// fs = require('fs');
-// // ...
-// app.post('/upload', function (req, res) {
-// var tempPath = req.files.file.path,
-//     targetPath = path.resolve('./uploads/image.png');
-// if (path.extname(req.files.file.name).toLowerCase() === '.png') {
-//     fs.rename(tempPath, targetPath, function(err) {
-//         if (err) throw err;
-//         console.log("Upload completed!");
-//     });
-// } else {
-//     fs.unlink(tempPath, function () {
-//         if (err) throw err;
-//         console.error("Only .png files are allowed!");
-//     });
-// }
-// // ...
-// });
-
-// app.get('/image.png', function (req, res) {
-//     res.sendfile(path.resolve('./uploads/image.png'));
-// }); 
 
 app.post('/sharePost', function (req, res) {
     var postToShare = req.body.post;
@@ -195,6 +159,14 @@ app.post('/messages', function (req, res) {
         } else {
             res.send('message created');
         }
+    });
+})
+app.post('/users', function (req, res, next) {
+    User.findOneAndUpdate({ username: req.body.username }, { $set: { url: req.body.url } }, function (err, doc) {
+        if (err) {
+            console.log(err);
+        }
+        console.log('successfully updated');
     });
 })
 app.post('/', function (req, res, next) {
