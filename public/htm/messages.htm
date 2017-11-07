@@ -10,7 +10,7 @@
             </p>
         </div>
         <button ng-click='show = !show'>Reply to this message</button>
-        <form ng-submit='submitMessageReply()' ng-show='show' ng-hide='!show'>
+        <form ng-submit='submitMessageReply(r)' ng-show='show' ng-hide='!show'>
             <textarea class="messageReply" ng-model='messageReply' cols="30" rows="10" placeholder="Write a message..."></textarea>
             <button type='submit'> Send reply</button>
         </form>
