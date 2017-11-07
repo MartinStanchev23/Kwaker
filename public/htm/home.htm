@@ -3,7 +3,7 @@
     <div id='home_left' class='col-lg-3'>
         <div class='col-lg-3' id='user_info_left'>
             <div id='profil_pic_and_name'>
-                <img id='profilePic' ng-click='getProfile()' style='border-radius: 50%' width='100px' height="100px" src="data:image/jpeg;base64,{{profilePicture}}" alt="">
+                <img id='profilePic' ng-click='getProfile()' style='border-radius: 50%' width='100px' height="100px" ng-src="{{user.url}}" alt="">
                 <h3> {{username}} </h3>
                 <img src="" alt="">
                 <form method="post" enctype="multipart/form-data" action="/">
@@ -33,7 +33,7 @@
     <div id='home_center' class='col-lg-6'>
         <div id='post_from_home' ng-show="!writePost" class='col-lg-6'>
             <span>
-                <img width='26px' height='26px' style='border-radius: 50%' ng-src="{{profilePicture}}" alt="">
+                <img width='26px' height='26px' style='border-radius: 50%' ng-src="{{user.url}}" alt="">
             </span>
             <input id='postInput' accept="image/gif,image/jpeg,image/jpg,image/png,video/mp4,video/x-m4v" ng-click="writePost = !writePost"
                 type="text" placeholder="What`s happening?">
