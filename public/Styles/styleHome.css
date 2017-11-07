@@ -129,4 +129,14 @@
     font-size: 28px;
     margin-bottom: 5px;
 }
-
+#imageUp{
+    background: none;
+    border: none;
+}
+#submitImg{
+    background: none;
+    border: none;
+}
+#imageUp + label{
+background-color: black;
+}

@@ -51,9 +51,9 @@ appNG.controller('login', function ($http, $scope, $location) {
 
     $scope.submitLogin = function () {
 
-        if ($scope.password == $scope.confirmPass &&
-            $scope.password.length > 5 && $scope.email.length > 5 && $scope.email.indexOf('@') != -1) {
-            // validation email and passs
+        // if ($scope.password == $scope.confirmPass &&
+        //     $scope.password.length > 5 && $scope.email.length > 5 && $scope.email.indexOf('@') != -1) {
+        //     // validation email and passs
             $http.post('/login', JSON.stringify({
                 email: $scope.email, password: $scope.password
             })).then(function (response) {
@@ -67,10 +67,10 @@ appNG.controller('login', function ($http, $scope, $location) {
                     sessionStorage.setItem('user', JSON.stringify(user));
                 }
             });
-        } else {
-            $location.path('/login');
-            alert('Invali email or password')
-        }
+        // } else {
+        //     $location.path('/login');
+        //     alert('Invali email or password')
+        // }
     }
 })
 
