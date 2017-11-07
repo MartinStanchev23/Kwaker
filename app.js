@@ -41,7 +41,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.post('/', upload.any(), function (req, res, next) {
     console.log(req.files)
     var pic = new Pic();
-    pic.address = req.files[0].filename + ".jpg";
+    pic.address = req.files[0].filename;
     pic.save(function (err) {
         if (err) {
             res.send(err);
@@ -184,17 +184,11 @@ app.post('/comments', function (req, res) {
     });
 });
 
-app.post('/user', function (req, res) {
+app.post('/messages', function (req, res) {
     var message = new Message();
     message.text = req.body.messageText;
     message.usernameR = req.body.reciever;
     message.usernameS = req.body.username;
-    User.findOneAndUpdate({ username: req.body.reciever }, { $push: { followers: message } }, function (err, doc) {
-        if (err) {
-            console.log(err);
-        }
-        // console.log(doc);
-    });
     message.save(function (err) {
         if (err) {
             res.send(err);

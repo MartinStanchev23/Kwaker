@@ -1,0 +1,12 @@
+<div ng-controller="message">
+    <button ng-click='viewMessages()'>View messages:</button>
+    <div ng-repeat="r in result">
+        <p>
+            {{r.usernameS}} said:
+        </p>
+        <p>
+           " {{r.text}} "
+        </p>
+        <button ng-click='sendReply(usernameS)'>Reply to this message</button>
+    </div>
+</div>

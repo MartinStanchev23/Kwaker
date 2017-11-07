@@ -20,6 +20,9 @@ appNG.config(function ($routeProvider) {
         .when('/user', {
             templateUrl: 'htm/user.htm'
         })
+        .when('/messages', {
+            templateUrl: 'htm/messages.htm'
+        })
 })
 
 
@@ -127,5 +130,8 @@ appNG.controller('homeButtons', function ($scope, $location) {
     $scope.homeBtn = function () {
         $location.path('/');
         sessionStorage.removeItem('person');
+    }
+    $scope.sendMessage = function(){
+        $location.path('/messages');
     }
 })
