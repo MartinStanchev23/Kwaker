@@ -60,6 +60,7 @@ app.post('/users', function (req, res) {
             res.send('user created');
         }
     });
+    
 });
 
 //add new post record in database "posts"

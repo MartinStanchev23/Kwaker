@@ -96,7 +96,9 @@ appNG.controller('homeController', function ($scope, $http, $location) {
     //         console.log(response);
     //     });
     // }
-
+    $scope.getProfile = function(){
+        $location.path('/profile')
+    }
     $scope.postData = {};
     $scope.share = function (post) {
         $scope.showShareForm = true;

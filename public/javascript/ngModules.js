@@ -21,7 +21,7 @@ appNG.config(function ($routeProvider) {
 })
 
 
-appNG.controller('register', function ($http, $scope) {
+appNG.controller('register', function ($http, $scope, $location) {
     $scope.firstname = '';
     $scope.lastname = '';
     $scope.username = '';
@@ -36,8 +36,10 @@ appNG.controller('register', function ($http, $scope) {
             username: $scope.username, phone: $scope.phone, email: $scope.email, password: $scope.password,
         })).then(function (response) {
             console.log(response.data)
+            $location.path('/login')
         });
     }
+  
 });
 
 appNG.controller('login', function ($http, $scope, $location) {
@@ -109,5 +111,11 @@ appNG.controller('newKwak', function ($scope, $http) {
             })();
         });
 
+    }
+})
+
+appNG.controller('homeButtons', function($scope, $location){
+    $scope.homeBtn = function(){
+        $location.path('/')
     }
 })

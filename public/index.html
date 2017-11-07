@@ -52,8 +52,8 @@
             <div id='mainNavDiv'>
                 <nav id='mainNav'>
                     <div id='navWrapper'>
-                        <div id='homeButtons'>
-                            <div class='navDiv'>
+                        <div ng-controller='homeButtons' id='homeButtons'>
+                            <div ng-click='homeBtn()' class='navDiv'>
                                 <img src="/images/house-outline (2).png" id='homeMain' width='23px' height="21px" class='imgNav' alt="">
                                 <img src="/images/house-outline (3).png" id='homeSecondary' width='23px' height="21px" class='imgNav' alt="">
                                 <span class='navSpan'>Home</span>
